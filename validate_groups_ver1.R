@@ -48,47 +48,29 @@ ions <- rbind(cations, anions, other, silicates)
 
 initial <- googlesheets4::read_sheet(
   ss='1Wo6n1xggXkITCCApdt_tLsNHOKMxyOgsMqSVpRecYsE',
-  sheet = 'Groups_formulae_table',
-  range = 'B:GB',
+  sheet = 'Groups_ver1',
+  range = 'M:AA',
   col_names = TRUE,
   col_types = 'c',
   na = ""
 )
 
-# concat ion columns with charges
-data <- initial %>%
-  select(!c('Supergroup','Group','Subgroup','Aliases','Series','Chemical_label', 
-            'Structural_label','Minerals_Names','Note','Index','Relation_name','Formulae')) %>%
-  mutate(Id = 1:nrow(initial)) %>%
-  plain_ions('A') %>%
-  plain_ions('B') %>%
-  plain_ions('C') %>%
-  plain_ions('D') %>%
-  plain_ions('E') %>%
-  plain_ions('F') %>%
-  plain_ions('X1') %>%
-  plain_ions('X2') %>%
-  plain_ions('X3') %>%
-  plain_ions('Y1') %>%
-  plain_ions('Y2') %>%
-  plain_ions('Y3') %>%
-  plain_ions('V') %>%
-  plain_ions('W') %>%
-  plain_ions('Z') %>%
-  select(Id, A, B, C, D, E, F, X1, X2, X3, Y1, Y2, Y3, V, W, Z)
-  
+# concat ions
 
-  mutate_all(str_split(Cation, ', ')) %>%
-  unchop(Cation, keep_empty = FALSE) %>%
-  distinct(Cation) %>%
-  arrange(Cation)
+cations_groups <- 
+  initial %>%
+  unite(ions, c(A, B, C, D, E, F, X1, X2, X3, Y1, Y2, Y3, V, W, Z), sep = ', ', na.rm=TRUE) %>%
+  mutate(ions=str_split(ions, ', ')) %>%
+  unchop(ions, keep_empty = FALSE) %>%
+  mutate(ions=str_replace(ions, ' x .*', '')) %>%
+  distinct(ions) %>%
+  arrange(ions)
 
 # check errors -------------------------------
-check <- data %>%
-  anti_join(ions, by=c('Cation'='Ion'))
-
+check <- cations_groups %>%
+  anti_join(ions, by=c('ions'='Ion'))
 
 # output ----------------------------------------------------------------------
-googlesheets4::write_sheet(output, 
+googlesheets4::write_sheet(data, 
                            ss = '1Wo6n1xggXkITCCApdt_tLsNHOKMxyOgsMqSVpRecYsE',
-                           sheet = 'GROUPS_psql')
+                           sheet = 'Groups_ver1')

@@ -76,7 +76,7 @@ merge_ions = function(input, column_name){
 
 plain_ions = function(input, column_name){
   temp <- input %>%
-    select(Id, !matches(ifelse(str_detect(column_name, 'X1|X2|X3|Y1|Y2|Y3'), column_name, paste0(column_name,'[0-9]'))))
+    select(!matches(ifelse(str_detect(column_name, 'X1|X2|X3|Y1|Y2|Y3'), column_name, paste0(column_name,'[0-9]'))))
   
   input <- input %>% 
     select(Id, matches(ifelse(str_detect(column_name, 'X1|X2|X3|Y1|Y2|Y3'), column_name, paste0(column_name,'[0-9]')))) %>%
@@ -91,10 +91,12 @@ plain_ions = function(input, column_name){
       )
       cation = ifelse(is.na(output[[1]][1]), '', output[[1]][1])
       charge = output[[1]][2]
+      index = output[[1]][3]
       
       charge = ifelse(str_detect(cation, '\\^') || is.na(charge) || cation == '[box]', '', paste0('^',charge,'^'))
+      index = ifelse(index == 1 || is.na(index) || cation == '[box]', '', paste0(' x ', index))
       
-      ions_cell = paste0(cation, charge)
+      ions_cell = paste0(cation, charge, index)
       
       return(ifelse(ions_cell == '', NA, ions_cell))
       

@@ -10,7 +10,7 @@ source('functions.R')
 cations <- googlesheets4::read_sheet(
   ss='1FCu3ywv1wVMP6IZjwFezjipXXC74S8hRbLZaNzZCWpg',
   sheet = 'Cations',
-  range = 'A:A',
+  range = 'A:H',
   col_names = TRUE,
   col_types = 'c',
   na = ""
@@ -57,8 +57,8 @@ initial <- googlesheets4::read_sheet(
 
 # concat ion columns with charges
 data <- initial %>%
-  select(!c('Supergroup','Group','Subgroup','Aliases','Series','Chemical_label', 
-            'Structural_label','Minerals_Names','Note','Index','Relation_name','Formulae')) %>%
+  # select(!c('Supergroup','Group','Subgroup','Aliases','Series','Chemical_label', 
+  #           'Structural_label','Minerals_Names','Note','Index','Relation_name','Formulae')) %>%
   mutate(Id = 1:nrow(initial)) %>%
   plain_ions('A') %>%
   plain_ions('B') %>%
@@ -75,20 +75,38 @@ data <- initial %>%
   plain_ions('V') %>%
   plain_ions('W') %>%
   plain_ions('Z') %>%
-  select(Id, A, B, C, D, E, F, X1, X2, X3, Y1, Y2, Y3, V, W, Z)
+  select(Supergroup,Group,Subgroup,Aliases,Series,Chemical_label, 
+         Structural_label, Minerals_Names, Note, Index, Relation_name, Formulae,
+         A, B, C, D, E, F, X1, X2, X3, Y1, Y2, Y3, V, W, Z)
   
+cations_groups <- 
+  data %>%
+  unite(ions, c(A, B, C, D, E, F, X1, X2, X3), sep = ', ', na.rm=TRUE) %>%
+  mutate(ions=str_split(ions, ', ')) %>%
+  unchop(ions, keep_empty = FALSE) %>%
+  distinct(ions) %>%
+  arrange(ions)
 
-  mutate_all(str_split(Cation, ', ')) %>%
-  unchop(Cation, keep_empty = FALSE) %>%
-  distinct(Cation) %>%
-  arrange(Cation)
+# Use only ions columns, omit charge and index
+output <- 
+  initial %>%
+  select(!c('Supergroup','Group','Subgroup','Aliases','Series','Chemical_label', 
+            'Structural_label','Minerals_Names','Note','Index','Relation_name','Formulae')) %>%
+  select(!contains(c('Charge', 'Index'))) %>%
+  unite(ions, matches('.*'), sep=', ', na.rm = TRUE) %>%
+  mutate(ions=str_split(ions, ', ')) %>%
+  unchop(ions, keep_empty = FALSE) %>%
+  distinct(ions) %>%
+  arrange(ions)
 
 # check errors -------------------------------
-check <- data %>%
-  anti_join(ions, by=c('Cation'='Ion'))
+cations <- cations %>%
+  select(Ion, `Ion (oxidation states)`)
 
+  check <- cations_groups %>%
+  anti_join(cations, by=c('ions'='Ion (oxidation states)'))
 
 # output ----------------------------------------------------------------------
-googlesheets4::write_sheet(output, 
+googlesheets4::write_sheet(data, 
                            ss = '1Wo6n1xggXkITCCApdt_tLsNHOKMxyOgsMqSVpRecYsE',
-                           sheet = 'GROUPS_psql')
+                           sheet = 'Groups_ver1')

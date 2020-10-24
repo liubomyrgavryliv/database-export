@@ -1,0 +1,37 @@
+status_id,description_short,description_long
+0.0,IMA minerals,all IMA-approved minerals
+1.0,grouping,supergroup names
+1.1,grouping,group names
+1.2,grouping,subgroup names
+1.3,grouping,root names
+1.4,grouping,series
+2.0,synonyms,chemical names of minerals
+2.1,synonyms,"commodity, i.e. trade name of minerals"
+2.2,synonyms,"common or widely used mineral synonyms, e.g. Morion = Smoky Quartz"
+2.3,synonyms,"renamed, i.e. old mineral names"
+2.4,synonyms,"general terms and related synonyms, i.e. Nickel-iron = Awaruite, Josephinite, Souesite, Bobrovkite, Edmonsonite, Taenite, Plessite"
+2.5,synonyms,"Identical, meaning a type material that was described as a new species, but later recognized as identical to already described mineral."
+2.6,synonyms,"Language synonyms, originating from different languages, e.g. Mohrenkopfturmalin = Moor's head tourmaline"
+2.7,synonyms,"Obsolete mineral names, including obsolete nomenclature terms, old non-mineralogical names, as well as other deprecated names with a lack of data."
+2.8,synonyms,"Regional synonyms, e.g. Marmarosch diamond = ""Herkimer-style"" Quartz"
+2.9,synonyms,"Spelling synonyms, including erroneous, alternative, and other spellings variations, e.g. Carbonate-hydroxylapatite = Carbonate-rich Hydroxylapatite"
+3.0,polytypes,all polytypes
+4.0,varieties,Chemical varieties
+4.1,varieties,"Physical varieties, due to some specific physical properties, like colour, habit, etc"
+4.2,varieties,"Composition varieties, meaning varieties due to inclusions or intergrowths with some other minerals, e.g. Nipomo Agate = Agate with inclusions of Marcasite"
+4.3,varieties,"Origin, varieties that can be distinguished by its specific formation, e.g. Bowlingite = Saponite pseudomorphs after olivine."
+4.4,varieties,Structural varieties. e.g. Gurhofian = colloidal from of Dolomite
+4.5,varieties,Varieties of unknown or uncertain type.
+5.0,anthropotype,Anthropotype minerals - non-approved by IMA
+5.1,unstable,"Unstable minerals under environmental conditions (hypothetical for Earth surface conditions), e.g. Argentite only stable over 177°C."
+5.2,synthetic,"Synthetic phases, usually laboratory synthesized, mainly represented by varieties, e.g. Corundolite = synthetic colorless Spinel."
+5.3,hypothetical,Hypothetical minerals that don’t exist in nature and usually represent the end members of isomorphic series
+6.0,unnamed,"Unnamed minerals that follows A System of Codification for Unnamed Minerals by Smith, D.G.W., Nickel, E.H. (2007)."
+6.1,unnamed,Other unnamed minerals that don’t follow the system of codification
+7.0,rocks,rock names that often treated as minerals
+8.0,mixtures,"mineral mixtures, usually thought to be a separate mineral species"
+9.0,obsolete nomenclature,"Obsolete nomenclature terms are represented by non-relevant names from obsolete nomenclature schemes, e.g. Ottoliniite or Ceriopyrochlore (of Hogarth 1977)."
+9.1,questionable,"Questionable, discredited, rejected mineral names, including possible new minerals, poorly or inadequately studied materials, etc."
+9.2,questionable nomenclature,"Non-approved, alternative or possibly new nomenclature names that still was not accepted by IMA for some reason."
+9.3,intermediate member of a solid-solution series,"Intermediate member of a solid-solution series. Apparently, this mineral names follows modern nomenclature, but cannot be accepted as a separate species (similar to chemical varieties)."
+10.0,mineraloids,All mineraloids

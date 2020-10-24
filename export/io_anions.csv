@@ -1,0 +1,234 @@
+anion_id,anion_name,formula,formula_with_oxidation,variety_of,class_id,subclass_id,group_id,subgroup_id,structure_description,geometry
+1,Carbide,C,C,,2,17,,,Single atom,Point
+2,Nitrite,N,N,,2,17,,,Single atom,Point
+3,Phosphide,P,P,,2,17,,,Single atom,Point
+4,Silicide,Si,Si,,2,17,,,Single atom,Point
+5,Dihydrogen fluoroaluminate,AlF_4_(OH)_2_,AlF_4_(OH)_2_,6,5,4,,,Ion of Al is octahedrally surrounded with four F and two OH unites,Octaedron
+6,Hexafluoroaluminate,AlF_6_,AlF_6_,,5,4,,,Ion of Al is octahedrally surrounded with six F,Octaedron
+7,Hydrogen pentafluoroaluminate,AlF_5_OH,AlF_5_OH,6,5,4,,,Ion of Al is octahedrally surrounded with five F and one OH unites,Octaedron
+8,Oxytetrafluoroaluminate,AlF_4_O_2_,AlF_4_O_2_,6,5,4,,,Ion of Al is octahedrally surrounded with four F and two O,Octaedron
+9,Hexahydrogen aluminate,Al(OH)_6_,Al(OH)_6_,6,5,4,,,Ion of Al is octahedrally surrounded with six OH units,Octaedron
+10,Trihydrogen fluoroaluminate,AlF_3_(OH)_2_,AlF_3_(OH)_2_,6,5,4,,,Ion of Al is octahedrally surrounded with two F and three OH unites,Octaedron
+11,Tetrafluoroborate,BF_4_,BF_4_,,5,13,,,Ion of B is tetrahedrally surrounded with four ions of F,Tetrahedron
+12,Hexafluorosilicate,SiF_6_,SiF_6_,,5,42,,,Ion of Si is octahedrally surrounded with six F,Octaedron
+13,Bromide,Br,Br,,5,43,,,Single ion,Point
+14,Chloride,Cl,Cl,,5,43,,,Single ion,Point
+15,Fluoride,F,F,,5,43,,,Single ion,Point
+16,Iodide,I,I,,5,43,,,Single ion,Point
+17,Azanide,NH_2_,NH_2_,,8,26,,,Azanide is a nitrogen hydride and a monovalent inorganic anion.,Bent
+18,Cyanide,CN,CN,,8,26,,,Consists of a carbon atom triple-bonded to a nitrogen atom,Linear
+19,Sulphhydryl,SH,SH,,8,26,,,A simple radical molecule consisting of one hydrogen and one sulfur atom,Linear
+20,Thiocyanate,SCN,S^2-^CN^3-^,,8,26,,,The organic group (or metal ion) is attached to sulfur: R−S−C≡N has a S–C single bond and a C≡N triple bond.,Linear
+21,"1,2,4-triazolate anion",N_3_C_2_H_2_,N_3_C_2_H_2_,,8,31,,,"A five-membered, π-excessive, aromatic nitrogen heterocycle, comprised of two carbon and three nitrogen atoms present at the 1-, 2-, and 4-positions of the ring. All the atoms in 1,2,4-triazoles are sp2 hybridized and have 6π electrons delocalized over the ring, responsible for its aromatic character",Planar
+22,Acetate,CH_3_COO,CH_3_COO,,8,31,,,A monocarboxylic acid anion resulting from the removal of a proton from the carboxy group of acetic acid,Tetrahedron
+23,Citrate tetrahydrate,C_6_H_5_O_7_,C_6_H_5_O_7_,,8,31,,,"Tricarboxylic acid trianion, obtained by deprotonation of the three carboxy groups of citric acid (CH_2_(COO)-CHOH(COO)-CH_2_(COO))",
+24,Deoxophylloerythroetioporphyrin,C_31_H_32_N_4_,C_31_H_32_N_4_,,8,31,,,"3,9,14-Triethyl-4,8,13,18-tetramethyl-3,4-didehydrophorbine",
+25,Formate,HCOO,HCOO,,8,31,,,Formate is a monocarboxylic acid anion that is the conjugate base of formic acid,
+26,Glycolate,C_2_H_3_O_3_,C_2_H_3_O_3_,,8,31,,,A hydroxy monocarboxylic acid anion that is acetate where the methyl group has been hydroxylated,
+27,Isocyanurate,C_3_N_3_O_3_H_2_,C_3_N_3_O_3_H_2_,,8,31,,,"1,3,5-triazine-2,4,6-triol",
+28,Mellitate,C_6_(COO)_6_,C_6_(COO)_6_,,8,31,,,"Benzene-1,2,3,4,5,6-hexacarboxylic acid",
+29,Methanesulphonate,CH_3_SO_3_,CH_3_S^6+^O_3_,,8,31,,,"A 1,1-diunsubstituted alkanesulfonate that is the conjugate base of methanesulfonic acid",
+30,Oxalate,C_2_O_4_,C_2_O_4_,,8,31,,,"The oxalate anion may adopt either a planar conformation with D2h molecular symmetry, or a conformation where the O–C–C–O dihedrals approach 90° with approximate D2d symmetry.",
+31,Mudesous acid,C_6_H_5_O_10_,C_6_H_5_O_10_,,8,31,,,Unknown structure type,
+33,Antimonate,SbO_4_,Sb^5+^O_4_,,11,5,,,Sb atom is coordinated by four O atoms forming a tetraedron,Tetrahedron
+34,Hexahydroxyantimonate,Sb^5+^(OH)_6_,Sb^5+^(OH)_6_,,11,5,,,Sb atom is coordinated by six O atoms forming an octahedron,Octahedron
+35,Antimonite,SbO_3_,Sb^3+^O_3_,,11,7,,,Sb atom is coordinated by three O atoms forming a pyramide,Pyramid
+36,Diantimonite,Sb_2_O_4_,Sb^3+^_2_O_4_,,11,7,,,It consists of interconnected SbO_3_ pyramid,Two pyramids
+37,Arsenate,AsO_4_,As^5+^O_4_,,11,8,,,As atom is coordinated by four O atoms forming a tetrahedron,Tetrahedron
+38,Diarsenate,As_2_O_7_,As^5+^_2_O_7_,,11,8,,,"The structure contains As^5+^ cations, each of which is tetrahedrally coordinated by four O atoms, and pairs of these AsO4 tetrahedra share a vertex which results in As_2_O_7_ pyroarsenate groups",Two tetrahedrons
+39,Dihydrogen arsenate,H_2_AsO_4_,H_2_As^5+^O_4_,37,11,8,,,As atom is coordinated by two O atoms and two OH groups forming a tetrahedron,Tetrahedron
+40,Hydrogen arsenate,HAsO_4_,HAs^5+^O_4_,37,11,8,,,As atom is coordinated by three O atoms and one OH groups forming a tetrahedron,Tetrahedron
+41,Arsenite,AsO_3_,As^3+^O_3_,,11,10,,,"Ortho-arsenite, an ion of arsenous acid, with a pyramidal shape",Pyramid
+42,Diarsenite (4O),As_2_O_4_,As^3+^_2_O_4_,,11,10,,,It consists of interconnected AsO_3_ pyramids,Two pyramids
+43,Diarsenite (5O),As_2_O_5_,As^3+^_2_O_5_,,11,10,,,The structure is based on [As2O5]4− corner-linked dimers of  [AsO3]3− trigonal pyramids,Two pyramids
+44,Hydrogen arsenite,HAsO_3_,HAs^3+^O_3_,41,11,10,,,As atom is coordinated by two O atoms and one OH groups forming a pyramid,Pyramid
+45,Phylloarsenite,As^3+^_5_O_11_,As^3+^_5_O_11_,,11,10,,,"[As_5_O_11_] group, terminal AsO_3_ pyramids share two anions with the octahedra, whereas the three central AsO_3_ groups share only one anion with the octahedra, the others bridging between neighboring AsO_3_ group",Sheets
+46,Tectoarsenite,As^3+^_14_O_24_,As^3+^_14_O_24_,,11,10,,,AsO_3_ pyramids share O corners to form a ‘loose’ 3D framework,Framework
+47,Bismuthite,BiO_3_,BiO_3_,,11,11,,,Bi atom is coordinated by three O atoms forming a pyramide,Pyramid
+48,Dibismuthite,Bi_2_O_4_,Bi_2_O_4_,,11,11,,,It consists of interconnected BiO_3_ pyramids,Two pyramids
+49,Diborate (5O),B_2_O_5_,B_2_O_5_,,11,12,4,,A pair of triangles,"2:◿, isolated"
+50,Diborate (calciborite_type),B_2_O_4_*1*,B_2_O_4_*1*,,11,12,4,,<◿2T> rings link via common (BO4) groups to form [3]B[4]BФ4 chains extending along [001],"2:∞(◿ +T), chains"
+51,Diborate (santarosaite_type),B_2_O_4_*2*,B_2_O_4_*2*,,11,12,4,,A pair of tetraedra,"2:T, isolated"
+52,Dihydrogen diborate,B_2_O_4_(OH)_2_,B_2_O_4_(OH)_2_,,11,12,4,,"BO_3_ triangles and BO_2_(OH)_2_ tetrahedra share a common vertex, forming insular [B2O_4_(OH)_2_]^4−^ groups",2:◿+T
+53,Hexahydrogen diborate,B_2_O(OH)_6_,B_2_O(OH)_6_,,11,12,4,,"Two minerals contain this FBB as an isolated cluster in their structure. In both cases, two (BФ4) groups share a vertex to form a cluster.","2:T, isolated"
+54,Hydrogen diborate,B_2_O_4_(OH),B_2_O_4_(OH),,11,12,4,,Сonsist of 1 x 2 ribbons of edge-sharing octahedra that link by sharing vertices to form comrgated sheets of octahedra perpendicular to t 1 001 ; these sheets are cross-linked into a framework by [B2O5] groups,"2:◿, isolated"
+55,Tetrahydrogen diborate,B_2_O_2_(OH)_4_,B_2_O_2_(OH)_4_,,11,12,4,,A single (BO4) group that polymerizes by sharing two vertices with adjacent (BO4) groups to form a pyroxene-like chain that extends in the [001] direction.,"1:∞T, chains"
+56,Trihydroxydiborate,B_2_O_2_(OH)_3_,B_2_O_2_(OH)_3_,,11,12,4,,Chain composed of two linked triangles forming the dimer [-OB(OH)OB(OH)2] 1-.,"2:2◿, chains"
+57,Heptaborate,B_7_O_13_,B_7_O_13_,,11,12,5,,"The O(1) position is bonded to three boron atoms only, and the borate framework contains both BO4 tetrahedra and BO3 triangles",7:◿+6T
+58,Dihydrogen hexaborate,B_6_O_9_(OH)_2_,B_6_O_9_(OH)_2_,,11,12,6,,"Three <◿2T> rings link by sharing tetrahedra; each ring shares one tetrahedron with each of the other two rings. This produces a cluster with three triangles and three tetrahedra, and the tetrahedra all link together via acommon vertex denoted by [Ф] in the designation for the FBB.","6:3◿+3T, sheets"
+59,Hexaborate,B_6_O_10_,B_6_O_10_,,11,12,6,,Unknown structure type,
+60,Hexahydrogen hexaborate (aksaite_type),B_6_O_7_(OH)_6_*2*,B_6_O_7_(OH)_6_*2*,,11,12,6,,This FBB consisto sf three rings that link to a common central anion through their tetrahedrally coordinated B atoms. It occurs in three isolated cluster minerals,"6:3◿+3T, isolated"
+61,Hexahydrogen hexaborate (teruggite_type),B_6_O_7_(OH)_6_*1*,B_6_O_7_(OH)_6_*1*,,11,12,6,,"Formed by three six-membered boron-oxygen rings, two rings consisting of two tetrahedra and one triangle and the third ring being formed by three tetrahedra.","6:2◿+4T, isolated, modified"
+62,Hydrogen hexaborate,B_6_O_9_(OH),B_6_O_9_(OH),,11,12,6,,"Three rings link by sharing tetrahedra. Each ring shares one tetrahedron with the adjacent two rings, producing a cluster of three triangles and three tetrahedra in which the three tetrahedra link together yia a common vertex, as is the","6:3◿+3T, sheets modified"
+63,Phyllo-hexaborates,B_14_O_20_(OH)_6_,B_14_O_20_(OH)_6_,,11,12,6,,Based upon 2-dimensional anionic layers with the composition [B14O20(OH)6]4−. The layers are coplanar to (0 1 0) and are composed of BO4 tetrahedra and BO3 triangles. The fundamental building block (FBB) for the crystal structures of ginorite and strontioginorite consists of eight BO3 triangles and six BO4 tetrahedra. The adjacent FBBs are linked by sharing O atoms to form layers that possess open nine-membered rings centered by the M1 and M2 metal atoms.,6:∞2[(3◿+3T)+2◿].
+64,Tetrahydrogen hexaborate,B_6_O_8_(OH)_4_,B_6_O_8_(OH)_4_,,11,12,6,,Linkage between (BY_3_) and (BY_4_) groups to form chains parallel to the b-axis,"6:3◿+3T, chains"
+65,Trihydrogen hexaborate,"B_6_O_7_(OH)_3_(O,OH)_3_","B_6_O_7_(OH)_3_(O,OH)_3_",,11,12,6,,The mineral structure consists of hexaborate fundamental building blocks that polymerize along [001],6:T
+66,Mega-tektoborate,B_26_O_34_(OH)_24_,B_26_O_34_(OH)_24_,,11,12,7,,"The FBB contains a 12-membered ring of alternating (BY3) and (BY4) groups that share corners, with one of the (BY4) tetrahedra also a component of a <◿2T> ring that is in tum decorated with a single (BY3) group",15:7◿+8T
+67,Megaborate,B_13_O_17_(OH)_12_,B_13_O_17_(OH)_12_,,11,12,7,,"A complex corrugated borate sheet structure consisting of thirteen crystallographically distinct borate polyhedra, six of which are triangular [(BO3) groups] and seven of which are tetrahedral [(BO4) groups]. There are two types of triangular coordination, the common [BO3] and the much rarer [BO2(OH)]. There are three types of tetrahedral coordination, [BO4], [BO3(OH)] and [BO2(OH)2]","28:12◿+14T, sheets"
+68,Neso-dodecaborate,B_12_O_18_(OH)_12_,B_12_O_18_(OH)_12_,,11,12,7,,This FBB indicates that twelve boron polyhedra are involved in the formation of a twelve-membered ring with alternating tetrahedra and triangles,"12:6◿+6T, sheets"
+69,Silicoborate spiral,SiB_2_O_4_(OH)_4_,SiB_2_O_4_(OH)_4_,,11,12,7,,"All tetrahedron sharing corners to create infinite spirals along the b direction. Each spiral is also linked via corners to its own centrosymmetric equivalent, thus forming an eight-membered ring with alternating B, O, and Si atoms",3:3T
+70,Tekto-dodecaborate,B_12_O_28_,B_12_O_28_,,11,12,7,,Framework of BO4 tetrahedra,12:T
+71,Borate (tetrahedron),BO_4_,BO_4_,,11,12,8,,Boron ion is surroanded by four oxygen,"1:T, isolated"
+72,Borate (triangle),BO_3_,BO_3_,,11,12,8,,Boron ion is surroanded by three oxygen,"1:◿, isolated"
+73,Dihydrogen borate,BO(OH)_2_,BO(OH)_2_,,11,12,8,,One boron atom is surrounded with one oxygen and two OH group,"1:◿, isolated"
+74,Hydroxyborate,HBO_3_,HBO_3_,,11,12,8,,Boron ion is surroanded by two oxygen and one OH group,"1:◿, isolated"
+75,Tetrahydroxyborate,B(OH)_4_,B(OH)_4_,,11,12,8,,Boron ion is surroanded by four OH group,"1:T, isolated"
+76,Trihydroxyborate,B(OH)_3_,B(OH)_3_,,11,12,8,,Boron ion is surroanded by three OH group,"1:◿, isolated"
+77,Trihydroxyborate (1O),BO(OH)_3_,BO(OH)_3_,,11,12,8,,The unit consist of one boron connected to one oxygen and three OH group,"1:T, isolated"
+78,Hexahydrogen nonaborate,B_9_O_13_(OH)_6_,B_9_O_13_(OH)_6_,,11,12,10,,The framework consists of sheets of 12-membercd rings of alternating triangular and tetrahedral borate polyhedra cross-linked by adjacent slabs of 3-mcmbcrcd rings having a crankshaft chain configuration.,16:8◿+8T
+79,Nonahydrogen nonaborate,B_11_O_15_(OH)_9_,B_11_O_15_(OH)_9_,,11,12,10,,"Structure contains a 9:(4◿ + 5T) + 2T fundamental building block (FBB), which is the third largest FBB known in a borate mineral. Each FBB contains four tlree-membered boron-oxygen rings, each of which is (1◿ + 2T).The FBBs comer-share with four other FBBs, forming complex borate sheels that run parallel to (010)",9:(4◿ + 5T) + 2T
+80,Tetrahydrogen nonaborate,B_9_O_14_(OH)_4_,B_9_O_14_(OH)_4_,,11,12,10,,Unknown structure type,
+81,Octaborate,B_8_O_13_(OH)_2_,B_8_O_13_(OH)_2_,,11,12,11,,The crystal structure is unique. Eight B polyhedra form a fundamental building block [B8O16(OH)2] which is a six-membered borate ring (built by two pairs of B tetrahedra and two B triangles) with two additional triangular BO2(OH) groups. Each [B8O16(OH)2] ring is linked to six adjacent analogous rings to form a [B8O13(OH)2]∞ layer.,"6: (2T + 2◿) + 2◿, layers"
+82,Dihydrogen pentaborate,B_5_O_7_(OH)_2_,B_5_O_7_(OH)_2_,,11,12,12,,This FBB consists of two <2◿T> rings that link via a common (BO_4_) tetrahedron. It occurs as polymerized type to form chains.,"5:4◿+T, chains"
+83,Dihydrogen pentaborate,B_5_O_8_(OH)_2_,B_5_O_8_(OH)_2_,,11,12,12,,It consists of two <◿2T> rings that link together through a common (BФ4) group. The FBB links to other clusters by sharing triangle vertices with neighboring tetrahedra and tetrahedron vertices with neighboring triangles to form a sheet perpendicular to [001],"5:2◿+3T, A=B, sheets"
+84,Hexahydrogen pentaborate (brianroulstonite_type),B_5_O_6_(OH)_6_*1*,B_5_O_6_(OH)_6_*1*,,11,12,12,,The FBB consists of a twelve-membered ring of alternating triangles and tetrahedra,"12:6◿+6T, sheets"
+85,Hexahydrogen pentaborate (ulexite_type),B_5_O_6_(OH)_6_*2*,B_5_O_6_(OH)_6_*2*,,11,12,12,,The FBB consists of two (BФ3) groups and three (BФ4) groups that link by sharing corners to form two <◿2Ф> rings that fuse through a common (BФ4) group.,"5:2◿+3T, A=B, isolated"
+86,Hydrogen pentaborate,B_5_O_8_(OH),B_5_O_8_(OH),,11,12,12,,"Comprised of three BФ3  triangles and two BФ4 tetrahedra thatshare vertices to form a three-membered–BФ3–BФ3–BФ4–ring and a three-membered–BФ3–BФ4–BФ4–ring, with a common BФ4tetrahedron shared betweenthe two rings.","5:3◿+2T, sheets"
+87,Octahydrogen pentaborate,B_15_O_20_(OH)_8_,B_15_O_20_(OH)_8_,,11,12,12,,This FBB consists of two <2◿T> rings that link via a common (BO_4_) tetrahedron. It occurs as polymerized type to form chains.,"5:(4◿ + T)3, isolated trimer"
+88,Pentaborate(9.5O),B_10_O_19_,B_10_O_19_,,11,12,12,,Unknown structure type,
+89,Pentaborate(9O),B_5_O_9_,B_5_O_9_,,11,12,12,,"The FBBs link by sharing (BO_4_) comers to form chains that extend along the c axis; each chain connects to adjacent chains by sharing corners between a (BO_3_) group of one chain and a (BO_4_) group of the adjacent chain. This connectivity results in a framework structure with open channels parallel to the a, b and c axis","5:2◿+3T, isolated"
+90,Pentahydrogen pentaborate,B_5_O_7_(OH)_5_,B_5_O_7_(OH)_5_,,11,12,12,,"The structure consists of infinite chains of pairs of borate rings that extend along [100] via corner-sharing; three corner-linked Bϕ4 (ϕ: OH−, O2−, or H2O) tetrahedra form one ring linked through a common boron atom to the next ring, composed of two Bϕ4 tetrahedra and one Bϕ3 triangle.","5:◿+4T, sheets"
+91,Tetrahydrogen pentaborate,B_5_O_6_(OH)_4_,B_5_O_6_(OH)_4_,,11,12,12,,This FBB consists of two <4◿T> rings that link via a common (BФ4) tetrahedron. It occurs as an isolated cluster,"5:4◿+T, isolated"
+92,Tetrahydrogen pentaborate,B_5_O_7_(OH)_4_,B_5_O_7_(OH)_4_,,11,12,12,,"Two <◿+2T> rings link through a common (BФ4) group, and an additional (BФ3) group is attached to a tetrahedron vertex. These clusters link by sharing vertices between triangles and tetrahedra to form convoluted chains extending along [010]","5:2◿+3T, A=B, chains"
+93,Trihydrogen pentaborate (ezcurrite_type),B_5_O_7_(OH)_3_*1*,B_5_O_7_(OH)_3_*1*,,11,12,12,,"This FBB has two different types of rings, <2◿T> and <◿2T> that link through a common tetrahedron. It is a common FBB that occurs polymerized to form chains","5:3◿+2T, A=B, chains"
+94,Trihydrogen pentaborate (kaliborite_type),B_5_O_7_(OH)_3_*2*,B_5_O_7_(OH)_3_*2*,,11,12,12,,It consists of two <◿2T> rings that link together through a common (BФ4) group.,"5:2◿+3T, A=B chains, modified"
+95,Dihydrogen tetraborate (6O),B_4_O_6_(OH)_2_,B_4_O_6_(OH)_2_,,11,12,20,,This FBB occurs only in kernite and consists of a <◿2T> ring that links to form a chain along [010] via sharing of a common tetrahedron between adjacent rings.,"7:3◿+4T, chains (?)"
+96,Dihydrogen tetraborate (7O),B_4_O_7_(OH)_2_,B_4_O_7_(OH)_2_,,11,12,20,,"The FBBs polymerize such that each (BФ3) group shares an anion with a (BФ4) group of an adjacent FBB, resulting in a framework structure that is composed of two interlocking networks of polmerized FBBs","4-1:2◿+2T, isolated"
+97,Hexahydrogen tetraborate (4O),B_4_O_4_(OH)_6_,B_4_O_4_(OH)_6_,,11,12,20,,The fundamental building block of the alfredstelznerite structure is the [B4O4(OH)(6)] polyhedron cluster containing two (B Phi(3)) triangles and two (B Phi(4)) tetrahedra. One (B Phi(3)) triangle and two (B Phi(4)) tetrahedra form a three-membered ring that is decorated by an additional (B Phi(3)) triangle sharing a vertex with a (B Phi(4)) tetrahedron; the algebraic descriptor for this borate cluster is <Delta 2 square >.,4:2◿+2T
+98,Hexahydrogen tetraborate (6O),B_4_O_6_(OH)_6_,B_4_O_6_(OH)_6_,,11,12,20,,The 4:4T FBB (fundamental building block) of the borcarite structure contains four Bphi4 tetrahedra (phi = unspecified ligand) which share corners to form a four-membered polyhedral ring.,"4:4T, isolated"
+99,Tetrahydrogen tetraborate,B_4_O_5_(OH)_4_,B_4_O_5_(OH)_4_,,11,12,20,,"The FBBs polymerize such that each (BФ3) group shares an anion with a (BФ4) group of an adjacent FBB, resulting in a framework structure that is composed of two interlocking networks of polmerized FBBs","4-1:2◿+2T, isolated"
+100,Hexahydrogen triborate,B_3_O_3_(OH)_6_,B_3_O_3_(OH)_6_,,11,12,21,,<3T> rings,"3:3T, isolated"
+101,Hydroxytriborate,B_3_O_5_(OH),B_3_O_5_(OH),,11,12,21,,"Consists of a four-membered rins of tetrahedra, <4T>, that shares two rrars edges with iwo three-membered rings, <◿2T>; the resulting cluster consists of four tetrahedra and two triangles. These clusters link by sharing two tetrahedron and two triangle vertices with adjacent clusrers to form a sheet","3:◿+2T, sheets"
+102,Pentahydrogen triborate,B_3_O_3_(OH)_5_,B_3_O_3_(OH)_5_,,11,12,21,,This FBB is a <3T> ring decorated with an additional (BO4) group,"3:(3T)+T, isolated, modified"
+103,Tetrahydrogen triborate,B_3_O_4_(OH)_4_,B_3_O_4_(OH)_4_,,11,12,21,,"<◿2T> rings. Both (BO4) tetrahedra share edges with the (CaФ6) polyhedra, and the (BO3) triangle extends outward from the sheet to link by corner-sharing to the adjacent sheet.","3:◿+2T, isolated"
+104,Tetrahydrogen triborate (ameghinite_type),B_3_O_3_(OH)_4_*2*,B_3_O_3_(OH)_4_*2*,,11,12,21,,An isolated <2◿T> cluster of the form [B_3_O_3_(OH)_4_],"3:2◿+T, isolated"
+105,Tetrahydrogen triborate (hydrochlorborite_type),B_3_O_3_(OH)_4_*1*,B_3_O_3_(OH)_4_*1*,,11,12,21,,<◿2T> ring,"3:◿+2T, isolated"
+106,Triborate,B_3_O_7_,B_3_O_7_,,11,12,21,,"FBB, which consists of a six-membered ring of tetrahedra that shares an edge with a fourmembered ring of tetrahedra. The FBBs link by sharing edges between the six-membered rings and between the six- and four-membered rings, and by sharing vertices between six-membered rings and between four-membered rings to form a sheet parallel to (001).",8:8T
+107,Trihydrogen triborate,B_3_O_4_(OH)_3_,B_3_O_4_(OH)_3_,,11,12,21,,<◿2T> rings share two vertices between triangles and tetrahedra of adjacent rings to form a chain extending along [100].,"3:◿+2T, chains"
+108,Borate (unclassified_balavinskite_type),B_6_O_11_,B_6_O_11_,,11,12,22,,Unknown structure type,
+109,Borate (unclassified_chelkarite_type),B_2_O_4_*4*,B_2_O_4_*4*,,11,12,22,,Unknown structure type,
+110,Borate (unclassified_ekaterinite_type),B_4_O_7_*2*,B_4_O_7_*2*,,11,12,22,,Unknown structure type,
+111,Borate (unclassified_iquiqueite_type),B_24_O_39_(OH),B_24_O_39_(OH),,11,12,22,,Unknown structure type,
+112,Borate (unclassified_korzhinskite_type),B_2_O_4_*3*,B_2_O_4_*3*,,11,12,22,,Unknown structure type,
+113,Borate (unclassified_vitimite_type),B_14_O_19_(OH)_14_,B_14_O_19_(OH)_14_,,11,12,22,,Unknown structure type,
+114,Borate (unclassified_wardsmithite_type),B_4_O_7_*1*,B_4_O_7_*1*,,11,12,22,,Unknown structure type,
+115,Carbonate,CO_3_,CO_3_,,11,14,,,"It consists of one carbon atom surrounded by three oxygen atoms, in a trigonal planar arrangement, with D3h molecular symmetry",Pyramid
+116,Hydrogen carbonate,HCO_3_,HCO_3_,115,11,14,,,"it consists of one central carbon atom surrounded by three oxygen atoms in a trigonal planar arrangement, with a hydrogen atom attached to one of the oxygens.",Pyramid
+117,Chromate,CrO_4_,Cr^6+^O_4_,,11,15,,,Cr atom is coordinated by four O atoms forming a tetrahedron,Tetrahedron
+118,Dichromate,Cr^6+^_2_O_7_,Cr^6+^_2_O_7_,,11,15,,,It consists of two chromate tetrahedron that shares one oxygen,Two tetrahedra
+119,Hydrogarnet-like substitution group,H_4_O_4_,H_4_O_4_,,11,20,,,It consists of four oxygen atoms and four hydrogen atoms,
+120,Hydroxide,OH,OH,,11,20,,,It contains oxygen bonded to hydrogen,Bent
+121,Iodate,IO_3_,I^5+^O_3_,,11,22,,,Iodine is bonded to three oxygen atoms,Trigonal pyramidal
+122,Iodite,I^3+^O_2_,I^3+^O_2_,,11,23,,,Anion obtained by deprotonation of iodous acid. It is an iodine oxoanion and a monovalent inorganic anion. It is a conjugate base of an iodous acid.,
+123,Molybdate (Mo^IV^),MoO_4_,Mo^6+^O_4_,,11,27,,,Mo ion is surroanded by four oxygen,Tetrahedron
+124,Molybdate (Mo^VI^),MoO_6_,Mo^6+^O_6_,,11,27,,,Ion of Mo is octahedrally surrounded with six O,Octaedron
+125,Heteropolyniobate,Nb^5+^_12_O_42_,Nb^5+^_12_O_42_,,11,29,,,"Formed by 12 face and corner sharing NbO6-octahedra, enclosing a 12-fold coordinated cavity",Framework
+126,Niobate (Nb^VI^),Nb^5+^O_6_,Nb^5+^O_6_,,11,29,,,Ion of N is octahedrally surrounded with six Ob,Octaedron
+127,Hexaniobate,Nb^5+^_6_O_19_,Nb^5+^_6_O_19_,,11,29,,,Six edge-sharing Nb-octahedra form the Lindqvist ion,Framework
+128,Niobate (Nb^IV^),NbO_4_,Nb^5+^O_4_,,11,29,,,Nb ion is surroanded by four oxygen,Tetrahedron
+129,Nitrate,NO_3_,N^5+^O_3_,,11,30,,,"The anion is the conjugate base of nitric acid, consisting of one central nitrogen atom surrounded by three identically bonded oxygen atoms in a trigonal planar arrangement",Trigonal pyramidal
+130,Oxide,O,O,,11,32,,,Single ion,Point
+131,Dihydrogen phosphate,H_2_PO_4_,H_2_PO_4_,134,11,33,,,P atom is coordinated by two O atoms and two OH groups forming a tetrahedron,Tetrahedron
+132,Diphosphate,P_2_O_7_,P_2_O_7_,134,11,33,,,Two corner-sharing PO_4_ tetrahedra,Two tetrahedra
+133,Hydrogen phosphate,HPO_4_,HPO_4_,134,11,33,,,P atom is coordinated by two O atoms and one OH groups forming a tetrahedron,Tetrahedron
+134,Phosphate,PO_4_,PO_4_,,11,33,,,P ion is surroanded by four oxygen,Tetrahedron
+135,Triphosphate,P_3_O_10_,P_3_O_10_,,11,33,,,Three corner-sharing PO_4_ tetraedra,Three tetrahedra
+136,Selenate,SeO_4_,Se^6+^O_4_,,11,38,,,Se ion is surroanded by four oxygen,Tetrahedron
+137,Selenite,SeO_3_,Se^4+^O_3_,,11,40,,,Se is bonded to three oxygen atoms,Trigonal pyramidal
+138,Fluorosulfate,SO_3_F,S^6+^O_3_F,,11,45,,,The fluorosulfate anion can be treated as though it were a hydrogen sulfate anion with hydroxyl substituted by fluorine,Tetrahedron
+139,Hydrogensulfate,SO_3_OH,S^6+^O_3_OH,,11,45,,,S ion is surroanded by three oxygen and one OH group,Tetrahedron
+140,Sulfate,SO_4_,S^6+^O_4_,,11,45,,,S ion is surroanded by four oxygen,Tetrahedron
+141,Thiosulphate,S_2_O_3_,S^4+^_2_O_3_,,11,45,,,A sulfate ion with one oxygen replaced by sulfur.,Tetrahedron
+142,Sulfite,SO_3_,S^4+^O_3_,,11,47,,,S is bonded to three oxygen atoms,Trigonal pyramidal
+143,Tantalate,TaO_4_,TaO_4_,,11,48,,,Ta ion is surroanded by four oxygen,Tetrahedron
+144,Metatellurate,TeO_4_,Te^6+^O_4_,,11,50,,,Te atom is coordinated by four O atoms forming a tetrahedron,Tetrahedron
+145,Orthotellurate,TeO_6_,Te^6+^O_6_,,11,50,,,Te atom is coordinated by six O atoms forming a slightly distorted octahedron,Octahedra
+146,Tellurite (Te^V^),Te^4+^O_5_,Te^4+^O_5_,,11,52,,,Te atom is coordinated by five O atoms,Square-based pyramids
+147,Tellurite (Te^IV^),Te^4+^O_4_,Te^4+^O_4_,,11,52,,,Te atom is coordinated by four O atoms forming a tetrahedron,Tetrahedron
+148,Phyllotellurate (carlfriesite_type),"(Te^6+^,Te^4+^)_3_O_8_","(Te^6+^,Te^4+^)_3_O_8_",,11,50,,,The nanoporous [Te4+2Te6+O8]2– framework structure of carlfriesite consists of an unusual Te4+O5 network of primary bonds and Te6+O6 octahedra,Framework
+149,Dihydrogen orthotellurate,H_2_TeO_6_,H_2_Te^6+^O_6_,145,11,52,,,Te atom is coordinated by four O atoms and two OH units forming a slightly distorted octahedron,Octahedra
+150,Dihydrogen tellurite,H_2_TeO_3_,H_2_Te^4+^O_3_,154,11,52,,,Te is bonded to three oxygen and two hydrogen atom,Trigonal pyramidal
+151,Ditellurite,Te^4+^_2_O_5_,Te^4+^_2_O_5_,,11,52,,,The structure is based on [Te2O5] corner-linked dimers of  [TeO3]3− trigonal pyramids,Two pyramids
+152,Hydrogen tellurite,HTeO_3_,HTe^4+^O_3_,154,11,52,,,Te is bonded to three oxygen and one hydrogen atom,Trigonal pyramidal
+153,"Phyllotellurate (IV, VI)",Te^4+^_3_Te^6+^O_12_,Te^4+^_3_Te^6+^O_12_,,11,52,,,Te6+O6 octahedra and Te4+O4 disphenoids together form the new mixed-valence phyllotellurate anion [Te4+3 Te6+O12]12−),Framework
+154,Tellurite,TeO_3_,Te^4+^O_3_,,11,52,,,Te is bonded to three oxygen atoms,Trigonal pyramidal
+155,Phyllotellurate (spiroffite_type),Te_3_O_8_,Te^4+^_3_O_8_,,11,52,,,"The Te cations and the associated Te-O bonds form strongly bonded [Te3O12] trimers that are weakly linked via long Te-O bonds to form a ladder like chain along [001]. These ladders are shown very well 'end-on"". Between the sheets and the ladders are large tunnels approximately 3.2 x 5.5 A across. Spiroffite can thus be considered as a hetero-polyhedral framework structure with tunnels lined with TeOn polyhedra",Framework
+156,Heteropolytungstate,Fe^3+^W^6+^_9_O_34_,Fe^3+^W^6+^_9_O_34_,,11,54,,,The polyanion is formed of nine WO6 octahedra with a central Fe3+O4 tetrahedron,Framework
+157,Hydrogen tungstate,HWO_4_,HW^6+^O_4_,162,11,54,,,W atom is coordinated by four O atoms and one H forming a tetrahedron,Tetrahedron
+158,Tungstate (W^VI^),WO_6_,W^6+^O_6_,,11,54,,,Te atom is coordinated by six O atoms forming an octahedron,Octahedron
+159,Aluminate (W^VI^),AlO_6_,AlO_6_,,11,,,,Al atom is coordinated by six O atoms forming an octahedron,Octahedron
+160,Titanate (W^VI^),TiO_6_,Ti^4+^O_6_,,11,,,,Ti atom is coordinated by six O atoms forming an octahedron,Octahedron
+161,Ferrate,Fe^3+^O_4_,Fe^3+^O_4_,,11,,,,Fe^3+^ atom is coordinated by four O atoms forming a tetrahedron,Tetrahedron
+162,Tungstate,WO_4_,W^6+^O_4_,,11,54,,,W atom is coordinated by four O atoms forming a tetrahedron,Tetrahedron
+163,Hydroxyvanadate,HVO_4_,HV^5+^O_4_,165,11,55,9,,V atom is coordinated by four O atoms and one H forming a tetrahedron,Tetrahedron
+164,Metavanadate,VO_3_,V^5+^O_3_,,11,55,9,,"Chains of [VO3]-, formed as corner-sharing VO4 tetrahedra",Two tetrahedra
+165,Vanadate,VO_4_,V^5+^O_4_,,11,55,9,,V atom is coordinated by four O atoms forming a tetrahedron,Tetrahedron
+166,"Vanadate (V^IV,5+^)",VO_5_,V^5+^O_5_,,11,55,9,,V atom is coordinated by five O atoms,Square-based pyramids
+167,"Vanadate (V^IV,4+^)",V^4+^O_5_,V^4+^O_5_,,11,55,9,,V atom is coordinated by five O atoms,Square-based pyramids
+168,"Hexavanadate (IV, V) (15O)","(V^4+^,V^5+^)_6_O_15_","(V^4+^,V^5+^)_6_O_15_",,11,55,13,,The structure consists of a clinolattice of VO5 square-based pyramids and VO6 octahedra. This array of V-0 polyhedra forms rectangular tunnels,Sheets
+169,"Hexavanadate (IV, V) (16O)","(V^5+^,V^4+^)_6_O_16_","(V^5+^,V^4+^)_6_O_16_",,11,55,13,,"The structure consists of sheets with a chemical composition of (V6O16)n that are composed of laterally stacked alternating chains of (V2O6) and (V4O12) units. The open channels left between the sheets are occupied by the M ions and by water molecules. The average oxidation number of vanadium varies between 4.87 (grantsite) and 5.00 (barnesite and metahewettite). Thus, the compositions of some group members are seemingly non-stoichiometric",Sheets
+170,"Vanadate (V^VI^,^5+^,^4+^)","(V^4+^,V^5+^)O_6_","(V^4+^,V^5+^)O_6_",171,11,55,9,,V atom is coordinated by six O atoms forming an octahedron,Octahedron
+171,Vanadate (V^VI^),VO_6_,V^5+^O_6_,,11,55,9,,V atom is coordinated by six O atoms forming an octahedron,Octahedron
+172,Vanadate (V^IV^),H_3_V^4+^O_6_,H_3_V^4+^O_6_,171,11,55,9,,V atom is coordinated by three O atoms and three OH groups forming an octahedron,Octahedron
+173,"Divanadate chain (IV, V)","(V^5+^,V^4+^)_2_O_6_","(V^5+^,V^4+^)_2_O_6_",175,11,55,,,Consisting of alternating square pyramids,Chain
+174,"Vanadate (IV, V)","(V^5+^,V^4+^)O_4_","(V^5+^,V^4+^)O_4_",165,11,55,9,,V atom is coordinated by four O atoms forming a tetrahedron,Tetrahedron
+175,Divanadate chain (V),V^5+^_2_O_6_,V^5+^_2_O_6_,,11,55,,,Consisting of alternating square pyramids,Chain
+176,"Tetravanadate chain (IV, V)","(V^5+^,V^4+^)_4_O_12_","(V^5+^,V^4+^)_4_O_12_",177,11,55,,,Consisting of four highly condensed single octahedral chains,Chain
+177,Tetravanadate chain (V),V^5+^_4_O_12_,V^5+^_4_O_12_,,11,55,,,Consisting of four highly condensed single octahedral chains,Chain
+178,Hexavanadate (V),V^5+^_6_O_16_,V^5+^_6_O_16_,,11,55,13,,"The structure consists of sheets with a chemical composition of (V6O16)n that are composed of laterally stacked alternating chains of (V2O6) and (V4O12) units. The open channels left between the sheets are occupied by the M ions and by water molecules. The average oxidation number of vanadium varies between 4.87 (grantsite) and 5.00 (barnesite and metahewettite). Thus, the compositions of some group members are seemingly non-stoichiometric",Sheets
+179,"Octavanadate (IV,V)","(V^5+^,V^4+^)_8_O_20_","(V^5+^,V^4+^)_8_O_20_",,11,55,13,,"The structure consists of sheets with a chemical composition of (V8O20)n that are composed of laterally stacked chains of (V4O12) units. The open channels left between the sheets are occupied by the M ions and by water molecules. The average oxidation number of vanadium varies between 4.77 (bokite) and 4.86 (corvusite). Thus, the compositions of the group members are seemingly non-stoichiometric",Sheets
+180,Trivanadate,V^4+^_3_O_7_,V^4+^_3_O_7_,,11,55,13,,it consists of layers of VO5 pyramids (with vanadium in the tetravalent state),Sheets
+181,"Heptavanadate (V^4+,5+^)",V^4+^_5_V^5+^_2_O_16_,V^4+^_5_V^5+^_2_O_16_,,11,55,13,,"The layers are formed of double sheets of chains of edge-sharing VO6 octahedra; adjacent chains in (001) are linked by corner sharing at ‘‘kinks’’ in the chain. The chains in the two parallel layers are orthogonal to each other (rotated about [001]), and the two sheets that together form the V7O16 layer are linked by corner sharing of the VO4 tetrahedra.",Sheets
+182,"Aluminovanadate(IV,V) polyanion",AlV^4+^_2_V^5+^_12_O_40_,AlV^4+^_2_V^5+^_12_O_40_,,11,55,19,,"The structure of aluminovanadate(IV,V) polyanions consists of 14 (VO6) octahedra condensed by edge-sharing around a central (AlO6) octahedron",Framework
+183,Arsenovanadate (11-),As^3+^V^4+^_2_V^5+^_10_As^5+^_6_O_51_,As^3+^V^4+^_2_V^5+^_10_As^5+^_6_O_51_,,11,55,19,1,"heteropolyanion composed of twelve distorted V4+,5+O6 octahedra surrounding a central As3+O3 (arsenite) pyramid and decorated by peripheral As5+O4 (arsenate) tetrahedra, each of which shares three of its four vertices with VO6 octahedra",Framework
+184,Arsenovanadate (12-),As^3+^V^4+^_3_V^5+^_9_As^5+^_6_O_51_,As^3+^V^4+^_3_V^5+^_9_As^5+^_6_O_51_,183,11,55,19,1,"heteropolyanion composed of twelve distorted V4+,5+O6 octahedra surrounding a central As3+O3 (arsenite) pyramid and decorated by peripheral As5+O4 (arsenate) tetrahedra, each of which shares three of its four vertices with VO6 octahedra",Framework
+185,Arsenovanadate (12.5-),As^3+^V^5+^_8.5_V^4+^_3.5_As^5+^_6_O_51_,As^3+^V^5+^_8.5_V^4+^_3.5_As^5+^_6_O_51_,183,11,55,19,1,"heteropolyanion composed of twelve distorted V4+,5+O6 octahedra surrounding a central As3+O3 (arsenite) pyramid and decorated by peripheral As5+O4 (arsenate) tetrahedra, each of which shares three of its four vertices with VO6 octahedra",Framework
+186,"Arsenovanadate (As^5+^,V^5+^)",As^5+^V^5+^_12_O_40_(V^5+^O),As^5+^V^5+^_12_O_40_(V^5+^O),,11,55,19,1,"heteropolyanion composed of 12 distorted VO6 octahedra, surrounding a central AsO4 (arsenate) tetrahedron and capped by a VO4 (vanadate) tetrahedron, which shares three of its four vertices with VO6 octahedra",Framework
+187,Decavanadate (8-),V^4+^_2_V^5+^_8_O_28_,V^4+^_2_V^5+^_8_O_28_,189,11,55,19,2,"The decavanadate ion is an isolated group of ten condensed VO6 octahedra, six in a rectangular 2 x 3 array sharing edges, and four more, two fitted in above and two below by sharing sloping edges.",Framework
+188,Decavanadate (7-),V^5+^_9_V^4+^O_28_,V^5+^_9_V^4+^O_28_,189,11,55,19,2,"The decavanadate ion is an isolated group of ten condensed VO6 octahedra, six in a rectangular 2 x 3 array sharing edges, and four more, two fitted in above and two below by sharing sloping edges.",Framework
+189,Decavanadate (6-),V_10_O_28_,V^5+^_10_O_28_,,11,55,19,2,"The decavanadate ion is an isolated group of ten condensed VO6 octahedra, six in a rectangular 2 x 3 array sharing edges, and four more, two fitted in above and two below by sharing sloping edges.",Framework
+190,Dihydogen phosphovanadate,H_2_PV^5+^_12_O_40_(V^5+^O)_2_,H_2_PV^5+^_12_O_40_,,11,55,19,,Heteropolyanion composed of twelve distorted V06 octahedra surrounding a central PO4 tetrahedron and capped on opposite sides by two VO5 square pyramids; the structural unit is a modification of the a-isomer of the Keggin anion.,Framework
+191,Dihydrogen decavanadate (5-),H_2_V^4+^V^5+^_9_O_28_,H_2_V^4+^V^5+^_9_O_28_,189,11,55,19,2,"The decavanadate ion is an isolated group of ten condensed VO6 octahedra, six in a rectangular 2 x 3 array sharing edges, and four more, two fitted in above and two below by sharing sloping edges.",Framework
+192,Dihydrogen decavanadate (4-),H_2_V^5+^_10_O_28_,H_2_V^5+^_10_O_28_,189,11,55,19,2,"The decavanadate ion is an isolated group of ten condensed VO6 octahedra, six in a rectangular 2 x 3 array sharing edges, and four more, two fitted in above and two below by sharing sloping edges.",Framework
+193,Divanadate (V),V_2_O_7_,V^5+^_2_O_7_,,11,55,16,,V5+ in tetrahedral coordination with oxygen. The VO4 tetrahedra dimerize in [V2O7]4- group,"2:2T, corner-sharing"
+194,Titanodecavanadate,TiV_9_O_28_,Ti^4+^V^5+^_9_O_28_,189,11,55,19,2,The decavanadate ion is an isolated group of ten condensed VO6 octahedra and TiO6 octaedron,Framework
+195,Trimetavanadate,V^5+^_3_O_9_,V^5+^_3_O_9_,,11,55,22,,Structure requires re-investigation,
+196,Tetravanadate framework,"(V^5+^,V^4+^)_4_O_16_","(V^5+^,V^4+^)_4_O_16_",,11,55,19,,The VO5 square pyramids link at their bases (via comer-sharing) to form [V4O16] units,Framework
+197,Arsenophosphovanadate,"(V^5+^,V^4+^)_2_(P^5+^,As^5+^)O_8_","(V^5+^,V^4+^)_2_(P^5+^,As^5+^)O_8_",,11,55,19,,"The VO5 square pyramids link at their bases (via comer-sharing) to form [V4O16] units, and the remaining basal oxygens of the square pyramids interconnect to other [V4O16] units via shared vertices with [(P,As)O4] tetrahedra to form a 3-D framework possessing large interconnected channels.",Framework
+198,Octahydrogen phosphovanadate,V^4+^_4_P_2_O_8_(OH)_8_,V^4+^_4_P_2_O_10_(OH)_6_,,11,55,19,3,The structure contains V44+O16 polyvanadate clusters of four edge-sharing V4+O6 octahedra. The polyvanadate clusters are linked into a three-dimensional zeolite-type framework by sharing corners with PO4 tetrahedra.,Framework
+199,Tetravanadite,V^4+^_4_O_9_,V^4+^_4_O_9_,,11,55,22,,Structure requires re-investigation,
+200,Vanadate (satpaevite_type),V^4+^_2_V^5+^_6_O_37_,V^4+^_2_V^5+^_6_O_37_,,11,55,22,,Structure requires re-investigation,
+201,Vanadate (vanalite_type),V^5+^_10_O_38_,V^5+^_10_O_38_,,11,55,22,,Structure requires re-investigation,
+202,Antimonide,Sb,Sb,,14,6,,,Single ion,Point
+203,Diantimonide,Sb_2_,Sb_2_,,14,6,,,Diantimonide refers to a functional group with the structure R−Sb=Sb−R′. The linkage is similar to SS-bond.,dumbbell
+204,Arsenide,As,As,,14,9,,,Single ion,Point
+205,Dirsenide,As_2_,As_2_,,14,9,,,Dirsenide refers to a functional group with the structure R−As=As−R′. The linkage is similar to SS-bond.,dumbbell
+206,Selenarsenite,AsSe_3_,As^3+^Se_3_,,14,38,15,,An As atom at the apex of the pyramid formed by O atoms,Pyramid
+207,As-Se pair,AsSe,AsSe,,14,39,2,,As and Se are bonded together with a covalent bond,dumbbell
+208,Bi-Se pair,BiSe,BiSe,,14,39,2,,Bi and Se are bonded together with a covalent bond,dumbbell
+209,Sb-Se pair,SbSe,SbSe,,14,39,2,,Sb and Se are bonded together with a covalent bond,dumbbell
+210,Diselenide,Se_2_,Se_2_,,14,39,14,,Diselenide refers to a functional group with the structure R−Se−Se−R′. The linkage is similar to SS-bond.,dumbbell
+211,Selenide,Se,Se,,14,39,14,,Single ion,Point
+212,Selenantimonite,SbSe_3_,Sb^3+^Se_3_,,14,39,15,,An Sb atom at the apex of the pyramid associated with Se atoms,Pyramid
+213,Selenoantimonate,SbSe_4_,Sb^3+^Se_4_,,14,39,15,,Sb atom is coordinated by four Se atoms forming a tetrahedron,Tetrahedron
+214,Selenobismuthate,BiSe_4_,BiSe_4_,,14,39,15,,Bi atom is coordinated by four Se atoms forming a tetrahedron,Tetrahedron
+215,Selenobismuthite,BiSe_3_,BiSe_3_,,14,39,15,,An Bi atom at the apex of the pyramid associated with Se atoms,Pyramid
+216,As-S pair,AsS,AsS,,14,46,1,,Contains the mixed (S + As) layers or isolated S and As layers,dumbbell
+217,Bi-S pair,BiS,BiS,,14,46,1,,Bi and S are bonded together with a covalent bond,dumbbell
+218,Sb-S pair,SbS,SbS,,14,46,1,,Sb and S are bonded together with a covalent bond,dumbbell
+219,Disulfide,S_2_,S_2_,,14,46,17,,"In chemistry, a disulfide refers to a functional group with the structure R−S−S−R′. The linkage is also called an SS-bond or sometimes a disulfide bridge and is usually derived by the coupling of two thiol groups.",dumbbell
+220,Pentasulphide,S_5_,S_5_,,14,46,17,,"In chemistry, pentasulphide is the functional group R-S-S-S-S-S-R.",Bent
+221,Sulfide,S,S,,14,46,17,,Single ion,Point
+222,Ttrisulfide,S_3_,S_3_,,14,46,17,,"In chemistry, trisulfide is the functional group R-S-S-S-R.",Bent
+223,Sulfantimonate,SbS_4_,Sb^3+^S_4_,,14,46,18,,Sb atom is coordinated by four S atoms forming a tetrahedron,Tetrahedron
+224,Sulfantimonite,SbS_3_,Sb^3+^S_3_,,14,46,18,,An Sb atom at the apex of the pyramid associated with S atoms,Pyramid
+225,Sulfarsenate,AsS_4_,As^3+^S_4_,,14,46,18,,As atom is coordinated by four S atoms forming a tetrahedron,Tetrahedron
+226,Sulfarsenite,AsS_3_,As^3+^S_3_,,14,46,18,,An As atom at the apex of the pyramid formed by S atoms,Pyramid
+227,Sulfbismuthite,BiS_3_,BiS_3_,,14,46,18,,A Bi atom at the apex of the pyramid formed by S atoms,Pyramid
+228,Sulftelluride,TeS_3_,TeS_3_,,14,46,18,,A Te atom at the apex of the pyramid formed by S atoms,Pyramid
+229,Sulphogermanate,GeS_4_,GeS_4_,,14,46,18,,Ge atom is coordinated by four S atoms forming a tetrahedron,Tetrahedron
+230,Sulphostannate,SnS_4_,Sn^4+^S_4_,,14,46,18,,Sn atom is coordinated by four S atoms forming a tetrahedron,Tetrahedron
+231,Bi-Te pair,BiTe,BiTe,,14,51,3,,Bi and Te are bonded together with a covalent bond,dumbbell
+232,Sb-Te pair,SbTe,SbTe,,14,51,3,,Sb and Te are bonded together with a covalent bond,dumbbell
+233,Ditelluride,Te_2_,Te_2_,,14,51,,,Ditelluride refers to a functional group with the structure R−Te−Te−R′. The linkage is similar to SS-bond.,dumbbell
+234,Telluride,Te,Te,,14,51,,,Single ion,Point

@@ -1,0 +1,25 @@
+{
+    "id": "DB6CC3E8",
+    "path": "~/Dropbox/GP-minerals/R scripts/export_to_SQL/export_ms_anions_theoretical.R",
+    "project_path": "export_ms_anions_theoretical.R",
+    "type": "r_source",
+    "hash": "1958666358",
+    "contents": "",
+    "dirty": false,
+    "created": 1598372458478.0,
+    "source_on_save": false,
+    "relative_order": 5,
+    "properties": {
+        "tempName": "Untitled1",
+        "cursorPosition": "141,22",
+        "scrollLine": "133"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1599982431,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1599982431635,
+    "read_only": false,
+    "read_only_alternatives": []
+}

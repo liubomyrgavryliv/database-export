@@ -1,0 +1,24 @@
+{
+    "id": "328D0711",
+    "path": "~/Dropbox/GP-minerals/R scripts/export_to_SQL/export_ns.R",
+    "project_path": "export_ns.R",
+    "type": "r_source",
+    "hash": "778367694",
+    "contents": "",
+    "dirty": false,
+    "created": 1598986465093.0,
+    "source_on_save": false,
+    "relative_order": 7,
+    "properties": {
+        "cursorPosition": "59,0",
+        "scrollLine": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1598988476,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1598988476204,
+    "read_only": false,
+    "read_only_alternatives": []
+}

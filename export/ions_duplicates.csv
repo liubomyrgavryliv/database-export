@@ -1,0 +1,63 @@
+Ion,ID,Elements,Ion (oxidation states),Type
+B_2_O_4_,70,"B, O",B_2_O_4_,Anion
+B_2_O_4_,71,"B, O",B_2_O_4_,Anion
+B_2_O_4_,72,"B, O",B_2_O_4_,Anion
+B_3_O_3_(OH)_4_,80,"B, O, H",B_3_O_3_(OH)_4_,Anion
+B_3_O_3_(OH)_4_,81,"B, O, H",B_3_O_3_(OH)_4_,Anion
+B_5_O_7_(OH)_3_,95,"B, O, H",B_5_O_7_(OH)_3_,Anion
+B_6_O_7_(OH)_6_,106,"B, O, H",B_6_O_7_(OH)_6_,Anion
+B_5_O_7_(OH)_3_,107,"B, O, H",B_5_O_7_(OH)_3_,Anion
+B_6_O_7_(OH)_6_,109,"B, O, H",B_6_O_7_(OH)_6_,Anion
+Si_2_O_5_,369,"Si, O",Si_2_O_5_,Anion
+Si_2_O_5_,370,"Si, O",Si_2_O_5_,Anion
+"(Si,Al)_12_(O,OH)_32_",385,"Si, Al, O, H","(Si,Al)_12_(O,OH)_32_",Anion
+"(Si,Al)_12_(O,OH)_32_",394,"Si, Al, O, H","(Si,Al)_12_(O,OH)_32_",Anion
+AlSi_2_O_6_,410,"Al, Si, O",AlSi_2_O_6_,Anion
+AlSi_2_O_6_,411,"Al, Si, O",AlSi_2_O_6_,Anion
+"(Si,Al)_4_O_8_",421,"Si, Al, O","(Si,Al)_4_O_8_",Anion
+"(Si,Al)_4_O_8_",422,"Si, Al, O","(Si,Al)_4_O_8_",Anion
+Si_6_O_17_,426,"Si, O",Si_6_O_17_,Anion
+"(Si,Al)_8_O_16_",432,"Si, Al, O","(Si,Al)_8_O_16_",Anion
+"(Si,Al)_8_O_16_",434,"Si, Al, O","(Si,Al)_8_O_16_",Anion
+Si_5_O_14_,471,"Si, O",Si_5_O_14_,Anion
+Si_12_O_30_,478,"Si, O",Si_12_O_30_,Anion
+Si_12_O_30_,479,"Si, O",Si_12_O_30_,Anion
+Si_4_O_12_,493,"Si, O",Si_4_O_12_,Anion
+Si_4_O_12_,494,"Si, O",Si_4_O_12_,Anion
+Si_3_O_9_,506,"Si, O",Si_3_O_9_,Anion
+Si_3_O_9_,507,"Si, O",Si_3_O_9_,Anion
+Si_4_O_10_,517,"Si, O",Si_4_O_10_,Anion
+Si_4_O_10_,518,"Si, O",Si_4_O_10_,Anion
+Si_4_O_10_,519,"Si, O",Si_4_O_10_,Anion
+Si_4_O_11_,520,"Si, O",Si_4_O_11_,Anion
+Si_4_O_11_,521,"Si, O",Si_4_O_11_,Anion
+Si_4_O_11_,522,"Si, O",Si_4_O_11_,Anion
+Si_4_O_12_,523,"Si, O",Si_4_O_12_,Anion
+Si_4_O_12_,524,"Si, O",Si_4_O_12_,Anion
+Si_4_O_12_,525,"Si, O",Si_4_O_12_,Anion
+Si_5_O_14_,530,"Si, O",Si_5_O_14_,Anion
+Si_6_O_15_,536,"Si, O",Si_6_O_15_,Anion
+Si_6_O_15_,537,"Si, O",Si_6_O_15_,Anion
+Si_6_O_15_,538,"Si, O",Si_6_O_15_,Anion
+Si_6_O_15_,539,"Si, O",Si_6_O_15_,Anion
+Si_6_O_15_,541,"Si, O",Si_6_O_15_,Anion
+Si_6_O_15_,542,"Si, O",Si_6_O_15_,Anion
+Si_6_O_15_,543,"Si, O",Si_6_O_15_,Anion
+Si_6_O_16_(OH)_2_,544,"Si, O, H",Si_6_O_16_(OH)_2_,Anion
+Si_6_O_17_,545,"Si, O",Si_6_O_17_,Anion
+Si_6_O_17_,546,"Si, O",Si_6_O_17_,Anion
+Si_6_O_17_,548,"Si, O",Si_6_O_17_,Anion
+Si_6_O_16_(OH)_2_,549,"Si, O, H",Si_6_O_16_(OH)_2_,Anion
+Si_6_O_17_,550,"Si, O",Si_6_O_17_,Anion
+Si_6_O_17_,551,"Si, O",Si_6_O_17_,Anion
+Si_6_O_17_,552,"Si, O",Si_6_O_17_,Anion
+Si_6_O_17_,553,"Si, O",Si_6_O_17_,Anion
+Si_8_O_20_,562,"Si, O",Si_8_O_20_,Anion
+Si_8_O_20_,564,"Si, O",Si_8_O_20_,Anion
+Si_8_O_22_,565,"Si, O",Si_8_O_22_,Anion
+Si_8_O_22_,566,"Si, O",Si_8_O_22_,Anion
+Si_8_O_24_,567,"Si, O",Si_8_O_24_,Anion
+Si_8_O_24_,568,"Si, O",Si_8_O_24_,Anion
+SiO_3_,576,"Si, O",SiO_3_,Anion
+SiO_3_,577,"Si, O",SiO_3_,Anion
+Si_3_O_9_,578,"Si, O",Si_3_O_9_,Anion

@@ -1,0 +1,24 @@
+{
+    "id": "568936D2",
+    "path": "~/Dropbox/GP-minerals/R scripts/export_to_SQL/export_ms_species_countries.R",
+    "project_path": "export_ms_species_countries.R",
+    "type": "r_source",
+    "hash": "2084613673",
+    "contents": "",
+    "dirty": false,
+    "created": 1600003861592.0,
+    "source_on_save": false,
+    "relative_order": 8,
+    "properties": {
+        "cursorPosition": "60,0",
+        "scrollLine": "34"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1600004023,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1600004023771,
+    "read_only": false,
+    "read_only_alternatives": []
+}

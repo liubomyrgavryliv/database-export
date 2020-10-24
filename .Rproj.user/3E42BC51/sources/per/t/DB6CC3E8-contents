@@ -1,0 +1,161 @@
+library(tidyverse)
+library(googlesheets4)
+library(tidyjson)
+library(DBI)
+library(RCurl)
+setwd("~/Dropbox/GP-minerals/R scripts/export_to_SQL/")
+rm(list=ls())
+path <- 'export/'
+source('functions.R')
+
+conn <- dbConnect(RPostgres::Postgres(),dbname = 'master', 
+                  host = 'ec2-18-184-252-245.eu-central-1.compute.amazonaws.com',
+                  port = 5433,
+                  user = 'postgres',
+                  password = 'BQBANe++XrmO5xWA3UqipNACx3Mf95kN')
+
+
+ms_species = tbl(conn, 'ms_species')
+#Load data ---------------------------------------------------------------------
+initial <- googlesheets4::read_sheet(
+  ss='1QA-Y229WNurpJA7KYmpiU2jn-_YJmrUfLq_lv0VFpXg',
+  sheet = 'Nickel-Strunz',
+  range = 'A:I',
+  col_names = TRUE,
+  col_types = 'c',
+  na = ""
+) 
+
+olda_data <- googlesheets4::read_sheet(
+  ss='1QA-Y229WNurpJA7KYmpiU2jn-_YJmrUfLq_lv0VFpXg',
+  sheet = 'temp1',
+  range = 'A:C',
+  col_names = TRUE,
+  col_types = 'c',
+  na = ""
+) 
+
+ms_anions_theoretical <-
+  initial %>%
+  select(Mineral_Name, anions_real) %>%
+  left_join(olda_data, by='Mineral_Name') %>%
+  unite('anions_real', c('anions_real', 'Bonded.water'), sep=';', na.rm = TRUE) %>%
+  mutate(anions_real = ifelse(anions_real == '', NA, anions_real))
+
+final <- initial %>%
+  select(Mineral_Name) %>%
+  left_join(ms_anions_theoretical, by='Mineral_Name')
+
+
+# CREATE DATA TO PROCESS FOR VITALII - OMIT THIS STEP!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# parse anions_theoretical and export to masterlist
+ms_anions_theoretical <- 
+  initial %>%
+  select(Mineral_Name, anions_theoretical, Bonded.water, Non.bonded.water) %>%
+  unite('Bonded.water', c('Bonded.water', 'Non.bonded.water'), sep=';', na.rm=TRUE) %>%
+  mutate(Bonded.water = str_replace(Bonded.water, ';$', '')) %>%
+  mutate(Bonded.water = str_split(Bonded.water, ';')) %>%
+  unchop(Bonded.water, keep_empty = TRUE) %>%
+  mutate(Bonded.water = str_replace(Bonded.water, 'x.*', '')) %>%
+  mutate(Bonded.water = str_replace(Bonded.water, '^\\((?!.*\\)[^\\=].)', '')) %>%
+  mutate(Bonded.water = str_replace(Bonded.water, '=.*', '')) %>%
+  mutate(Bonded.water = ifelse(str_detect(Bonded.water, '[A-Za-z_0-9]\\('),Bonded.water,str_replace(Bonded.water, '\\)$', ''))) %>%
+  mutate(Bonded.water = str_split(Bonded.water, ' \\+ ')) %>%
+  unchop(Bonded.water, keep_empty = TRUE) %>%
+  mutate(Bonded.water, Bonded.water = ifelse(str_detect(Bonded.water, '\\[bo'), NA, Bonded.water)) %>%
+  group_by(Mineral_Name) %>%
+  summarise_at(.vars = 'Bonded.water',.funs = function(x) {
+                            if(!is.na(x))
+                              return(paste0(unique(x), collapse = ';'))
+                          }) %>%
+  mutate(Bonded.water = str_replace(Bonded.water, ';?NA;?', '')) %>%
+  mutate(Bonded.water = ifelse(Bonded.water == '', NA, Bonded.water))
+
+# check unique ions ------------------------------------------------------------
+check <- ms_anions_theoretical %>%
+  mutate(Bonded.water = str_split(Bonded.water, ';')) %>%
+  unchop(Bonded.water, keep_empty = TRUE) %>%
+  distinct(Bonded.water) %>%
+  arrange(Bonded.water)
+
+# check unique ions ------------------------------------------------------------
+check <- ms_anions_theoretical_fin %>%
+  mutate(anions_theoretical = str_split(anions_theoretical, ';')) %>%
+  unchop(anions_theoretical, keep_empty = TRUE) %>%
+  distinct(anions_theoretical) %>%
+  arrange(anions_theoretical)
+
+ms_anions_theoretical %>%
+  filter(Mineral_Name == 'Sussexite')
+
+# compare "theoretical" anions and "real"
+ns_anions_all <- initial %>%
+  select(Mineral_Name, Formula, anions_theoretical, anions_real) %>%
+  mutate(anions_theoretical = str_split(anions_theoretical, ';')) %>%
+  unchop(anions_theoretical, keep_empty = TRUE) %>% #parse anions_theoretical level
+  mutate(anions_theoretical = str_replace(anions_theoretical, '^\\((?!.*\\)[^\\=].)', '')) %>%
+  mutate(anions_theoretical = str_replace(anions_theoretical, '=.*', '')) %>%
+  mutate(anions_theoretical = str_replace(anions_theoretical, '\\)$', '')) %>%
+  mutate(anions_theoretical = str_split(anions_theoretical, ' \\+ ')) %>%
+  unchop(anions_theoretical, keep_empty = TRUE) %>%
+  mutate(anions_real = str_split(anions_real, ';')) %>% #parse anions_real level
+  unchop(anions_real, keep_empty = TRUE) %>% 
+  mutate(anions_real = str_replace(anions_real, ' x.*', '')) %>%
+  mutate(anions_real = str_replace(anions_real, '^\\((?!.*\\)[^\\=].)', '')) %>%
+  mutate(anions_real = str_replace(anions_real, '^\\((?=.*\\)$)', '')) %>%
+  mutate(anions_real = str_replace(anions_real, '\\=.*', '')) %>%
+  mutate(anions_real = str_replace(anions_real, '\\)$', '')) %>%
+  mutate(anions_real = str_split(anions_real, ' \\+ ')) %>%
+  unchop(anions_real, keep_empty = TRUE) %>%        
+  mutate(anion_el = str_extract(anions_theoretical, '[A-Z][a-z]?')) %>%
+  mutate(anions_real = ifelse(str_detect(anions_real, anion_el), anions_real, '')) %>%
+  filter(!is.na(anions_theoretical)) %>%
+  group_by(anions_theoretical) %>%
+  summarise(anions_real = paste(unique(anions_real), collapse=';'),
+            anions_theoretical = anions_theoretical) %>%
+  mutate(anions_real = str_split(anions_real, ';')) %>%
+  unchop(anions_real, keep_empty = FALSE) %>%
+  filter(anions_real != '' & anions_theoretical != '') %>%
+  distinct() %>%
+  arrange(anions_theoretical)
+
+# create unique ions list from cations-silicates-anions
+ns_ions_unique <- initial %>%
+  select(anions_theoretical, cations, silicates_theoretical, Bonded.water, Non.bonded.water) %>%
+  unite('ions',c('anions_theoretical', 'cations', 'silicates_theoretical', 'Bonded.water', 'Non.bonded.water'), sep = ';',na.rm=TRUE) %>%
+  mutate(ions = str_split(ions, ';')) %>%
+  unchop(ions, keep_empty = TRUE) %>%
+  mutate(ions = str_split(ions, ' \\+ ')) %>%
+  unchop(ions, keep_empty = TRUE) %>%
+  filter(ions != '') %>%
+  mutate(ions = str_replace(ions, '\\[box\\]', '')) %>%
+  mutate(ions = str_replace(ions, ' ?x.*$', '')) %>%
+  mutate(ions = str_replace(ions,'\\=.*$', '')) %>%
+  mutate(ions = str_replace(ions, '^\\((?!.*\\)[^\\=].)', '')) %>%
+  mutate(ions = str_replace(ions, '^\\((?=.*\\)$)', '')) %>%
+  mutate(ions = str_replace(ions, '(?<!\\()\\)$', '')) %>%
+  distinct() %>%
+  arrange(ions)
+
+# compare unique 'theoretical' anions with those stored in ions_table
+anions_absent <-
+  ns_anions_unique %>%
+  anti_join(ions, by = c('anions_theoretical' = 'Ion'))
+
+ions_duplicates <- ions %>% 
+  group_by(Ion, Type) %>% 
+  filter(n()>1)
+
+# filter ions present in ions_database but absent in ns list
+
+io_absent <- ions %>%
+  anti_join(ns_ions_unique, by = c('Ion'='ions'))
+
+# UPLOAD DATA TO DB
+dbSendQuery(conn, "DELETE FROM el_data;")
+dbWriteTable(conn, "el_data", el_data, append=TRUE)
+dbDisconnect(conn)
+
+# EXPORT ms_species ------------------------------------------------------------
+write_csv(ms_anions_theoretical, path = paste0(path, 'ms_anions_theoretical.csv'), na='')
+write_csv(final, path = paste0(path, 'ms_anions_theoretical.csv'), na='')

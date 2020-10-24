@@ -1,0 +1,24 @@
+{
+    "id": "2CCEBADF",
+    "path": "~/Dropbox/GP-minerals/R scripts/export_to_SQL/export el_data.R",
+    "project_path": "export el_data.R",
+    "type": "r_source",
+    "hash": "3856776155",
+    "contents": "",
+    "dirty": false,
+    "created": 1598295903190.0,
+    "source_on_save": false,
+    "relative_order": 4,
+    "properties": {
+        "cursorPosition": "11,52",
+        "scrollLine": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1598297511,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1598297511077,
+    "read_only": false,
+    "read_only_alternatives": []
+}

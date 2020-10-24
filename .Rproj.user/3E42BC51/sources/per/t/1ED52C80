@@ -1,0 +1,24 @@
+{
+    "id": "1ED52C80",
+    "path": "~/Dropbox/GP-minerals/R scripts/export_to_SQL/export_ms_names_chemistry_ions.R",
+    "project_path": "export_ms_names_chemistry_ions.R",
+    "type": "r_source",
+    "hash": "2345972373",
+    "contents": "",
+    "dirty": false,
+    "created": 1598293550619.0,
+    "source_on_save": false,
+    "relative_order": 2,
+    "properties": {
+        "cursorPosition": "27,0",
+        "scrollLine": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1598293975,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1598293975959,
+    "read_only": false,
+    "read_only_alternatives": []
+}

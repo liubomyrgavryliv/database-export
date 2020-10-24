@@ -1,0 +1,72 @@
+ns_class,ns_subclass,description
+1,A,Metals and intermetallic Alloys
+1,B,"Metallic Carbides, Silicides, Nitrides, Phosphides, etc"
+1,C,Metalloids and Nonmetals
+1,D,Nonmetallic Carbides and Nitrides
+10,A,Salts of Organic Acids
+10,B,Hydrocarbons
+10,C,Miscellaneous Organic Minerals
+2,A,Alloys
+2,B,"Metal Sulfides, M: S > 1: 1 (mainly 2: 1)"
+2,C,"Metal Sulfides, M: S = 1: 1 (and similar)"
+2,D,"Metal Sulfides, M: S = 3 :4 and 2:3"
+2,E,"Metal Sulfides, M: S <= 1:2"
+2,F,"Sulfides of arsenic, alkalies; sulfides with halide, oxide, hydroxide, H2O"
+2,G,"Sulfarsenites, sulfantimonites, sulfbismuthites"
+2,H,Sulfosalts of SnS archetype
+2,J,Sulfosalts of PbS Archetype
+2,K,"Sulfarsenates, Sulfantimonates"
+2,L,Unclassified Sulfosalts
+2,M,Oxysulfosalts
+3,A,"Simple halides, without H2O"
+3,B,"Simple halides, with H2O"
+3,C,Complex halides
+3,D,"Oxyhalides, hydroxyhalides and related double halides"
+4,A,Metal: Oxygen = 2:1 and 1:1
+4,B,Metal : Oxygen = 3:4 and similar
+4,C,"Metal : Oxygen = 2:3, 3:5 and Similar"
+4,D,Metal : Oxygen = 1:2 and Similar
+4,E,Metal : Oxygen = < 1:2
+4,F,Hydroxides (without V or U)
+4,G,Uranyl Hydroxides
+4,H,"V[5,6] Vanadates"
+4,J,"Arsenites, Antimonites, Bismuthites, Sulfites, Selenites, Tellurites;  Iodates"
+4,K,Iodates: Trigonal [IO3] pyramids (mostly)
+5,A,"Carbonates without Additional Anions, without H2O"
+5,B,"Carbonates with Additional Anions, without H2O"
+5,C,"Carbonates without Additional Anions, with H2O"
+5,D,"Carbonates with Additional Anions, with H2O"
+5,E,Uranyl Carbonates
+5,N,Nitrates
+6,A,Monoborates
+6,B,Diborates
+6,C,Triborates
+6,D,Tetraborates
+6,E,Pentaborates
+6,F,Hexaborates
+6,G,Heptaborates and Other Megaborates
+6,H,Unclassified Borates
+7,A,"Sulfates without additional anions, without H2O"
+7,B,"Sulfates with additional anions, without H2O"
+7,C,"Sulfates without additional anions, with H2O"
+7,D,"Sulfates with additional anions, with H2O"
+7,E,Uranyl Sulfates
+7,F,Chromates
+7,G,"Molybdates, Wolframates and Niobates"
+7,H,Uranium and uranyl molybdates and wolframates
+7,J,Thiosulfates
+8,A,"Phosphates, etc. without Additional Anions, without H2O"
+8,B,"Phosphates, etc. with Additional Anions, without H2O"
+8,C,"Phosphates, etc. without Additional Anions, with H2O"
+8,D,"Phosphates, etc. with Additional Anions, with H2O"
+8,E,Uranyl Phosphates and Arsenates
+8,F,"Polyphosphates, Polyarsenates, [4]-Polyvanadates"
+9,A,Nesosilicates
+9,B,Sorosilicates
+9,C,Cyclosilicates
+9,D,Inosilicates
+9,E,Phyllosilicates
+9,F,Tektosilicates without zeolitic H2O
+9,G,Tektosilicates with zeolitic H2O; zeolite family
+9,H,Unclassified Silicates
+9,J,Germanates

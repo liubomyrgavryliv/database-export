@@ -1,16 +1,15 @@
-class_name
-Complex cations
-Elements
-Germanates
-Grouped cations
-Halides
-Names_related
-Neutral compounds
-Organic and related compounds
-Organic compounds
-Organic minerals
-Oxides
-Silicates
-Simple cations
-Sulfides and sulfosalts
-Vacancy
+class_id,class_name
+1,Complex cations
+2,Elements
+3,Germanates
+4,Grouped cations
+5,Halides
+6,Neutral compounds
+7,Organic and related compounds
+8,Organic compounds
+9,Organic minerals
+10,Oxides
+11,Silicates
+12,Simple cations
+13,Sulfides and sulfosalts
+14,Vacancy

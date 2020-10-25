@@ -1,56 +1,63 @@
-subclass_name
-Actinides
-Alkali metals
-Alkaline earth metal
-Aluminofluorides
-Antimonates
-Antimonides
-Antimonites
-Arsenates
-Arsenides
-Arsenites
-Bismuthites
-Borates
-Borofluorides
-Carbonates
-Chromates
-Cyclosilicate
-Elements
-Germanate
-Hydrocarbons
-Hydroxides
-Inosilicate
-Iodates
-Iodites
-Lanthanide
-Metalloid
-Miscellaneous
-Molybdates
-Nesosilicate
-Niobates
-Nitrates
-Organic compounds
-Oxides
-Phosphates
-Phyllosilicate
-Phyllosilicates
-Post-transition metal
-Reactive nonmetal
-Selenates
-Selenides
-Selenites
-Silicate
-Silicofluorides
-Simple halides
-Sorosilicate
-Sulfates
-Sulfides
-Sulfites
-Tantalates
-Tektosilicate
-Tellurates
-Tellurides
-Tellurites
-Transition metal
-Tungstates
-Vanadates
+subclass_id,subclass_name
+1,Actinides
+2,Alkali metals
+3,Alkaline earth metal
+4,Aluminofluorides
+5,Antimonates
+6,Antimonides
+7,Antimonites
+8,Arsenates
+9,Arsenides
+10,Arsenites
+11,Bismuthites
+12,Borates
+13,Borofluorides
+14,Carbonates
+15,Chromates
+16,Cyclosilicate
+17,Cyclosilicates
+18,Elements
+19,Germanate
+20,Hydrocarbons
+21,Hydroxides
+22,Inosilicate
+23,Inosilicates
+24,Iodates
+25,Iodites
+26,Lanthanide
+27,Metalloid
+28,Miscellaneous
+29,Molybdates
+30,Nesosilicate
+31,Nesosilicates
+32,Niobates
+33,Nitrates
+34,Organic compounds
+35,Others
+36,Oxides
+37,Phosphates
+38,Phyllosilicate
+39,Phyllosilicates
+40,Post-transition metal
+41,Reactive nonmetal
+42,Selenates
+43,Selenides
+44,Selenites
+45,Silicate
+46,Silicates
+47,Silicofluorides
+48,Simple halides
+49,Sorosilicate
+50,Sorosilicates
+51,Sulfates
+52,Sulfides
+53,Sulfites
+54,Tantalates
+55,Tektosilicate
+56,Tektosilicates
+57,Tellurates
+58,Tellurides
+59,Tellurites
+60,Transition metal
+61,Tungstates
+62,Vanadates

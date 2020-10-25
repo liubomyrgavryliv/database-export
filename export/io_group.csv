@@ -1,23 +1,24 @@
-group_name
-Covalent pairs with S
-Covalent pairs with Se
-Covalent pairs with Te
-Diborates
-Heptaborates
-Hexaborates
-Miscellaneous
-Monoborates
-Nesovanadates
-Nonaborates
-Octaborates
-Pentaborates
-Phyllovanadates
-Selenides
-Selenosalts
-Sorovanadates
-Sulfides
-Sulfosalts
-Tectovanadates
-Tetraborates
-Triborates
-Unclassified
+group_id,group_name
+1,Covalent pairs with S
+2,Covalent pairs with Se
+3,Covalent pairs with Te
+4,Diborates
+5,Heptaborates
+6,Hexaborates
+7,Inovanadates
+8,Miscellaneous
+9,Monoborates
+10,Nesovanadates
+11,Nonaborates
+12,Octaborates
+13,Pentaborates
+14,Phyllovanadates
+15,Selenides
+16,Selenosalts
+17,Sorovanadates
+18,Sulfides
+19,Sulfosalts
+20,Tectovanadates
+21,Tetraborates
+22,Triborates
+23,Unclassified

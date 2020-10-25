@@ -8,9 +8,9 @@ rm(list=ls())
 path <- 'export/'
 source('functions.R')
 
-conn <- dbConnect(RPostgres::Postgres(),dbname = 'master', 
-                  host = 'ec2-18-184-252-245.eu-central-1.compute.amazonaws.com',
-                  port = 5433,
+conn <- dbConnect(RPostgres::Postgres(),dbname = 'postgres', 
+                  host = 'master.c6ya4cff5frj.eu-central-1.rds.amazonaws.com',
+                  port = 5432,
                   user = 'postgres',
                   password = 'BQBANe++XrmO5xWA3UqipNACx3Mf95kN')
 
@@ -74,28 +74,36 @@ io_class <- initial %>%
   select(Class) %>%
   rename(class_name=Class) %>%
   distinct(class_name) %>%
-  arrange(class_name)
+  arrange(class_name) %>%
+  mutate(class_id = row_number()) %>%
+  select(class_id, class_name)
 
 io_subclass <- initial %>%
   select(Subclass) %>%
   rename(subclass_name=Subclass) %>%
   distinct(subclass_name) %>%
   filter(!is.na(subclass_name)) %>%
-  arrange(subclass_name)
+  arrange(subclass_name) %>%
+  mutate(subclass_id = row_number()) %>%
+  select(subclass_id, subclass_name)
 
 io_group <- initial %>%
   select(Group) %>%
   rename(group_name=Group) %>%
   distinct(group_name) %>%
   filter(!is.na(group_name)) %>%
-  arrange(group_name)
+  arrange(group_name) %>%
+  mutate(group_id = row_number()) %>%
+  select(group_id, group_name)
 
 io_subgroup <- initial %>%
   select(Subgroup) %>%
   rename(subgroup_name=Subgroup) %>%
   distinct(subgroup_name) %>%
   filter(!is.na(subgroup_name)) %>%
-  arrange(subgroup_name)
+  arrange(subgroup_name) %>%
+  mutate(subgroup_id = row_number()) %>%
+  select(subgroup_id, subgroup_name)
   
 # an_hierarchy <- initial %>%
 #   select(Class, Subclass, Group, Subgroup) %>%
@@ -109,7 +117,7 @@ io_subgroup <- initial %>%
 #   select(class_id, subclass_id, group_id, subgroup_id)
 
 # UPLOAD DATA TO DB
-dbSendQuery(conn, "DELETE FROM io_class;")
+dbSendQuery(conn, "DELETE FROM io_class WHERE 1=1;")
 dbWriteTable(conn, "io_class", io_class, append=TRUE)
 
 dbSendQuery(conn, "DELETE FROM io_subclass;")

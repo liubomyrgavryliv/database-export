@@ -120,17 +120,26 @@ anions_subset <- output[-1,] %>%
   mutate(ion = str_split(ion, ';')) %>%
   unchop(ion, keep_empty = FALSE) %>%
   separate(ion, c('ion','ion_quantity'), sep=' x ', remove=FALSE) %>%
-  separate(ion, c('ion','ion_quantity'), sep=' or ', remove=FALSE) %>%
+  mutate(ion = str_split(ion, ' or ')) %>% # filter(mineral_name == 'Hydrotalcite Group')
+  unchop(ion, keep_empty = FALSE) %>%
   filter(str_detect(ion_position_name, 'Y1|Y2|Y3|V|W|Z')) %>%
   left_join(anions, by=c('ion'='formula'), copy=TRUE) %>%
-  filter(is.na(ion_id)) %>%
-  distinct(ion)
-
-
   left_join(cations, by=c('ion'='formula'), copy=TRUE) %>%
-  left_join(anions, by=c('ion'='formula'), copy=TRUE) %>%
+  mutate(ion_id = ifelse(is.na(ion_id.x), ion_id.y, ion_id.x)) %>%
+  select(mineral_name, ion_position_name, ion, ion_id, ion_quantity) %>%
   left_join(silicates, by=c('ion'='formula'), copy=TRUE) %>%
+  mutate(ion_id = ifelse(is.na(ion_id.x), ion_id.y, ion_id.x)) %>%
+  select(mineral_name, ion_position_name, ion, ion_id, ion_quantity) %>%
   left_join(others, by=c('ion'='formula'), copy=TRUE) %>%
+  mutate(ion_id = ifelse(is.na(ion_id.x), ion_id.y, ion_id.x)) %>%
+  select(mineral_name, ion_position_name, ion_id, ion_quantity) %>%
+  filter(!is.na(ion_id)) # self check - check if all matched!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+gr_ions <- rbind(cations_subset, anions_subset) 
+
+check <- gr_ions %>%
+  group_by(mineral_name, ion_position_name, ion_id, ion_quantity) %>%
+  filter(n() > 1)
   
 
 

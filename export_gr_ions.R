@@ -17,6 +17,21 @@ conn <- dbConnect(RPostgres::Postgres(),dbname = 'postgres',
 io_positions_list = tbl(conn, 'io_positions_list')
 ms_species = tbl(conn, 'ms_species')
 ions_list = tbl(conn, 'ions_list')
+io_types_list = tbl(conn, 'io_types_list')
+
+# create subsets for different ions types 
+ions_list <- ions_list %>%
+  inner_join(io_types_list, copy=TRUE)
+  
+anions <- ions_list %>%
+  filter(ion_type_name == 'Anion')
+cations <- ions_list %>%
+  filter(ion_type_name == 'Cation')
+silicates <- ions_list %>%
+  filter(ion_type_name == 'Silicate')
+others <- ions_list %>%
+  filter(ion_type_name == 'Other')
+
 #Load data ---------------------------------------------------------------------
 initial <- googlesheets4::read_sheet(
   ss='1Wo6n1xggXkITCCApdt_tLsNHOKMxyOgsMqSVpRecYsE',
@@ -76,26 +91,50 @@ data <-
 rm(list = c('supergroups', 'groups', 'subgroups', 'roots', 'series', 'minerals'))
 
 # merge all ions ----------------------------------------------------------------
-output <- tibble('mineral_name'=NA,'ion_position'=NA, 'ion'=NA)
-gr_ions <- data[1:10,] %>%
+output <- tibble('mineral_name'=NA,'ion_position_name'=NA, 'ion'=NA)
+data %>%
   select(name, A,B,C,D,E,F,X1,X2,X3,Y1,Y2,Y3,V,W,Z) %>%
   mutate(mineral_name=name) %>%
   nest(data = c(mineral_name, A, B, C, D, E, F, X1, X2, X3, Y1, Y2, Y3, V, W, Z)) %>%
   rowwise() %>%
   mutate_at('data', .funs=function(x){
     local_data <- x %>% select(where(~ !(all(is.na(.)))))
-    output <<- output %>% 
-      add_row('mineral_name'=x$mineral_name,'ion_position'='A', 'ion'=x$A)
-    return(x)
-    # if (!is.na(x$A)) rbind(c("A",x$A))
-    # if (!is.na(x$B)) rbind(c("B",x$B))
-    # if (!is.na(x$C)) rbind(c("C",x$C))
-    # if (!is.na(x$D)) rbind(c("D",x$D))
-    # if (!is.na(x$E)) rbind(c("E",x$E))
-    
+    for (col in colnames(local_data)[-1]) {
+      output <<- output %>% 
+        add_row('mineral_name'=local_data$mineral_name,'ion_position_name'=col, 'ion'=local_data[[col]])
+    }
   })
 
-gr_ions$data[2][[1]] %>% select(where(~ !(all(is.na(.)))))
+cations_subset <- output[-1,] %>%
+  mutate(ion = str_split(ion, ';')) %>%
+  unchop(ion, keep_empty = FALSE) %>%
+  separate(ion, c('ion','ion_quantity'), sep=' x ', remove=FALSE) %>%
+  filter(str_detect(ion_position_name, 'A|B|C|D|E|F|X1|X2|X3')) %>%
+  left_join(cations, by=c('ion'='formula'), copy=TRUE) %>%
+  left_join(others, by=c('ion'='formula'), copy=TRUE) %>%
+  mutate(ion_id = ifelse(is.na(ion_id.x), ion_id.y, ion_id.x)) %>%
+  select(mineral_name, ion_position_name, ion_id, ion_quantity) %>%
+  filter(!is.na(ion_id)) # self check - check if all matched!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+anions_subset <- output[-1,] %>%
+  mutate(ion = str_split(ion, ';')) %>%
+  unchop(ion, keep_empty = FALSE) %>%
+  separate(ion, c('ion','ion_quantity'), sep=' x ', remove=FALSE) %>%
+  separate(ion, c('ion','ion_quantity'), sep=' or ', remove=FALSE) %>%
+  filter(str_detect(ion_position_name, 'Y1|Y2|Y3|V|W|Z')) %>%
+  left_join(anions, by=c('ion'='formula'), copy=TRUE) %>%
+  filter(is.na(ion_id)) %>%
+  distinct(ion)
+
+
+  left_join(cations, by=c('ion'='formula'), copy=TRUE) %>%
+  left_join(anions, by=c('ion'='formula'), copy=TRUE) %>%
+  left_join(silicates, by=c('ion'='formula'), copy=TRUE) %>%
+  left_join(others, by=c('ion'='formula'), copy=TRUE) %>%
+  
+
+
+
 
 # UPLOAD DATA TO DB
 dbSendQuery(conn, "DELETE FROM ms_species_ions;")

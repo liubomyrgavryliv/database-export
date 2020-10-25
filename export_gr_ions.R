@@ -135,19 +135,19 @@ anions_subset <- output[-1,] %>%
   select(mineral_name, ion_position_name, ion_id, ion_quantity) %>%
   filter(!is.na(ion_id)) # self check - check if all matched!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-gr_ions <- rbind(cations_subset, anions_subset) 
+gr_ions <- rbind(cations_subset, anions_subset) %>%
+  left_join(io_positions_list, by='ion_position_name', copy=TRUE) %>%
+  left_join(ms_species, by='mineral_name', copy=TRUE) %>%
+  select(mineral_id, ion_position_id, ion_id, ion_quantity)
 
 check <- gr_ions %>%
   group_by(mineral_name, ion_position_name, ion_id, ion_quantity) %>%
   filter(n() > 1)
   
 
-
-
-
 # UPLOAD DATA TO DB
-dbSendQuery(conn, "DELETE FROM ms_species_ions;")
-dbWriteTable(conn, "ms_species_ions", ms_species_ions, append=TRUE)
+dbSendQuery(conn, "DELETE FROM gr_ions;")
+dbWriteTable(conn, "gr_ions", gr_ions, append=TRUE)
 
 dbDisconnect(conn)
 

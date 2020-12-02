@@ -3,12 +3,16 @@ library(googlesheets4)
 library(tidyjson)
 library(DBI)
 library(RCurl)
+library("writexl")
 setwd("~/Dropbox/GP-minerals/R scripts/export_to_SQL/")
 rm(list=ls())
 path <- 'export/'
 source('functions.R')
 
 #Load data ---------------------------------------------------------------------
+e_rocks <- read.csv(paste0(path, 'minerals (5).csv')) %>%
+  select(Title, Nid)
+
 status <- googlesheets4::read_sheet(
   ss='1QA-Y229WNurpJA7KYmpiU2jn-_YJmrUfLq_lv0VFpXg',
   sheet = 'Status data',
@@ -85,7 +89,7 @@ mindex <- googlesheets4::read_sheet(
   na = ""
 ) %>%
   select(`Mineral Name`, Synonyms, Varieties, `Strunz 8th edition`, `Dana 8th edition`, `Hey's 3rd edition`,
-         `Geological occurrence`, `Localities`, `References`, `URL to e-Rocks`, `Context`)
+         `Geological occurrence`, `Localities`, `URL to e-Rocks`, `References`, `Context`)
 
   
 # Add fields to data -----------------------------------------------------------
@@ -139,20 +143,30 @@ mindex_out <- status %>%
   mutate(Formula = ifelse(!is.na(Formula), str_replace_all(Formula, '\\_(.*?)\\_',"<sub>\\1</sub>"), NA)) %>%
   mutate(Formula = ifelse(!is.na(Formula), str_replace_all(Formula, '\\^(.*?)\\^',"<sup>\\1</sup>"), NA)) %>%
   select(Mineral_Name, `Approval history`, Groups, Strunz, Formula, `Crystal System`, `Class Name`,
-         `H-M symbol`, `Space group`, `Non-standart settings`, Diaphaneity, Color, Streak, Luster, Cleavage, Fracture,
+         `H-M symbol`, `Space group`, `Non-standart settings`, Diaphaneity, color, Streak, Luster, Cleavage, Fracture,
          Tenacity, Hardness, `Density measured`, `D(calc,)`, `Habit(main)`, `Named for`, Index_Legend_Label, Index_Legend_Range,
          `Groups Short`) %>%
   left_join(mindex, by = c('Mineral_Name' = 'Mineral Name')) %>%
+  left_join(e_rocks, by=c('Mineral_Name'='Title')) %>%
+  mutate(url_title=tolower(str_replace_all(Mineral_Name, '[()]', ''))) %>%
+  mutate(`URL to e-Rocks1` = ifelse(!is.na(Nid),paste0('https://e-rocks.com/node/',Nid), NA)) %>%
+  mutate(`URL to e-Rocks` = ifelse(is.na(`URL to e-Rocks`),`URL to e-Rocks1`, `URL to e-Rocks`)) %>%
   select(Mineral_Name, `Approval history`, Groups, Synonyms, Varieties, `Strunz 8th edition`, `Dana 8th edition`, Strunz,
          `Hey's 3rd edition`, Formula, `Crystal System`, `Class Name`,
-         `H-M symbol`, `Space group`, `Non-standart settings`, Diaphaneity, Color, Streak, Luster, Cleavage, Fracture,
+         `H-M symbol`, `Space group`, `Non-standart settings`, Diaphaneity, color, Streak, Luster, Cleavage, Fracture,
          Tenacity, Hardness, `Density measured`, `D(calc,)`, `Habit(main)`, `Geological occurrence`, `Localities`, `References`,
          `Named for`, Index_Legend_Label, Index_Legend_Range, `URL to e-Rocks`, `Context`, `Groups Short`) %>%
-  rename(`Strunz 10th edition`=Strunz,`Optical Properties` = Diaphaneity, Colour=Color, Lustre=Luster, `Density calculated` = `D(calc,)`,
-         Habit = `Habit(main)`, Distribution=Index_Legend_Label, `Distribution Range`=Index_Legend_Range) %>%
+  rename(`Strunz 10th edition`=Strunz,`Optical Properties` = Diaphaneity, Colour=color, Lustre=Luster, `Density calculated` = `D(calc,)`,
+         Habit = `Habit(main)`, Distribution=Index_Legend_Label, `Distribution Range`=Index_Legend_Range)
 
-index_out[mindex_out==""]<-NA
+mindex_out <- mindex_out %>%
+  mutate(Hardness = str_replace_all(Hardness, ',', '.'),
+         `Density measured` = str_replace_all(`Density measured`, ',', '.'),
+         `Density calculated` = str_replace_all(`Density calculated`, ',', '.'))
+
+mindex_out[mindex_out==""]<-NA
 # export CSV --------------------------------------
-write.csv(mindex_out, 'Mindex_07092020.csv', na='', quote = F, row.names = F)
+write.csv(mindex_out, 'Mindex_16112020.csv', na='', quote = F, row.names = F)
+write_csv(mindex_out, 'Mindex_24112020.csv', na='', quote_escape = "double")
 
 

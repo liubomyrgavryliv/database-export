@@ -14,9 +14,9 @@ initial <- googlesheets4::read_sheet(
   na = ""
 ) %>% select(Strunz, CLASS, SUBCLASS, FAMILY)
   
-conn <- dbConnect(RPostgres::Postgres(),dbname = 'master', 
-                  host = 'ec2-18-184-252-245.eu-central-1.compute.amazonaws.com',
-                  port = 5433,
+conn <- dbConnect(RPostgres::Postgres(),dbname = 'postgres', 
+                  host = 'master.c6ya4cff5frj.eu-central-1.rds.amazonaws.com',
+                  port = 5432,
                   user = 'postgres',
                   password = 'BQBANe++XrmO5xWA3UqipNACx3Mf95kN')
 
@@ -36,6 +36,7 @@ ns_subclass <- initial %>%
   distinct(.keep_all = FALSE) %>%
   arrange(ns_class, ns_subclass) %>%
   filter(!is.na(SUBCLASS)) %>%
+  mutate(ns_subclass = paste0(ns_class,'.',ns_subclass)) %>%
   rename(description = SUBCLASS, id_class=ns_class, id_subclass=ns_subclass)
   
 ns_family <- initial %>%
@@ -46,6 +47,8 @@ ns_family <- initial %>%
   distinct(.keep_all = FALSE) %>%
   arrange(ns_class, ns_subclass, ns_family) %>%
   filter(!is.na(FAMILY)) %>%
+  mutate(ns_subclass = paste0(ns_class,'.',ns_subclass),
+         ns_family = paste0(ns_subclass,ns_family)) %>%
   rename(description = FAMILY, id_class=ns_class, id_subclass=ns_subclass, id_family=ns_family)
 
 # add ns indices with all possible variants: improvement to db schema

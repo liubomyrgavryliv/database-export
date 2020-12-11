@@ -1,0 +1,99 @@
+---
+title: "An overview of my data science experience focusing on improvements to processes, relating this to any background knowledge of Geology"
+output: 
+  ioslides_presentation:
+    widescreen: true
+    smaller: true
+    css: style.css
+author: "Liubomyr Gavryliv"
+date: Dec 17, 2020
+autosize: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Introduction | A word about myself
+
+- Geological background
+  - 2019: PhD in Geology ("Cenozoic mafic dykes of the Argentine Islands (West Antarctica)")
+  - 2015: MSc in Geochemistry, Mineralogy and Petrography
+  - 2013: BSc in geoinformatics
+
+- Data science related experience: 
+  - Since 2017: Freelancer on <a href="upwork.com">Upwork</a>.
+  - Since 2018: Data manager/web developer at <a href="https://e-rocks.com">e-Rocks ltd</a>.
+  
+## Relational mineralogical data model | A cure for geoscientific community?
+
+<h1 class="centered">Model characteristics</h1></br>
+
+  - **Simple** – to be understood by geoscientists
+  - **Customizable** – to be responsive to the needs of the researcher
+  - **Relational and nested** – the data is organized into separate domains with intra- and cross-domain relations
+  - **FAIR** – meet principles of findability, accessibility, interoperability, and reusability
+
+<h1 class="centered">Processes behind the scenes</h1></br>
+
+  - **Data** (gather, ETL and enrich, validate and migrate to the DB)
+  - **Back-end** service to speak nicely with the DB
+  - **Front-end** layer to speak nicely with API
+  - Model approbation in performing the **data analysis**
+
+## Data
+
+The data warehouse resides in a *postgreSQL* database at **AWS RDS**.
+
+<h1 class="centered">Data gathering</h1></br>
+
+The data comes in raw format from at least 3 different sources:
+
+  - the existing mineralogical resources (eg <a href="http://rruff.geo.arizona.edu/AMS/amcsd.php">AMCSD</a>, 
+  <a href="rruff.info/evolution">MED</a>, <a href="https://rruff.info/ima/">IMA list</a> etc)
+  - web scraping open-source resources using *node.js* and *puppeteer.js*
+  - hard-copy/online publications (<a href="http://www.minsocam.org/msa/ammin/ammineral.html">American Mineralogist</a>, <a href="https://pubs.geoscienceworld.org/canmin">Canadian Mineralogist</a> etc)
+  
+## Data ETL and enrich | <a href="https://github.com/liubomyrgavryliv/database-export">https://github.com/liubomyrgavryliv/database-export</a>
+
+Initially, the data is loaded to *RStudio* and tested through next rules to make sure it meets the requirements of data warehouse:
+
+  - join with **master table** of mineral species through mineral names key 
+    - create 'anti-join' subset for double check
+  - check duplicates
+  - aggregate data - check unique values
+  - clean data
+    - remove trailing spaces
+  - normalize data
+    - transposing or pivoting (turning multiple columns into multiple rows or vice versa)
+    - splitting a column into multiple columns (split strings into a list => explode a list into individual values in different columns)
+  - join **master tables**, replace values with IDs from master tables
+  
+## Data validation, update/insert/delete on the DB side | <a href="https://github.com/liubomyrgavryliv/database-dev">https://github.com/liubomyrgavryliv/database-dev</a>
+
+*Python* scripts to keep the DB synched and upload new batches of validated data. 
+  
+  - validator class
+    - cross-check new batch of data with **master tables** in the DB
+    -
+  - updater class
+    - decide which event should occur depending on table type (if master -> UPDATE/INSERT/DELETE, if many-to-many -> INSERT and/or DELETE)
+    - 
+
+
+## Mineralogical Nickel-Strunz classification | d3.js 
+
+<iframe width="180" height="400" src="https://liubomyrgavryliv.github.io/d3-NS-sunburst-webpack/" scrolling="yes" frameborder="0" allowfullscreen></iframe>
+
+## Slide with R Output
+
+```{r cars, echo = TRUE}
+summary(cars)
+```
+
+## Slide with Plot
+
+```{r pressure}
+plot(pressure)
+```
+

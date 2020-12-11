@@ -11,7 +11,7 @@ initial <- googlesheets4::read_sheet(
   sheet = 'Sheet2',
   range = 'A:E',
   col_names = TRUE,
-  na = ""
+  na = "cccccc"
 ) %>% select(`Space group`,`Non-standard space group`,`H-M symbol`,`Class Name`,`Crystal System`)
 
 conn <- dbConnect(RPostgres::Postgres(),dbname = 'postgres', 
@@ -24,14 +24,16 @@ crystal_systems_list <- tbl(conn, 'crystal_systems_list')
 # PROCESS data -----------------------------------------------------------------
 crystal_classes <-
   initial %>%
-  select(`Class Name`,`Crystal System`) %>%
-  rename(crystal_class_name=`Class Name`, crystal_system_name=`Crystal System`) %>%
+  select(`Class Name`,`H-M symbol`,`Crystal System`) %>%
+  rename(crystal_class_name=`Class Name`,h_m_symbol=`H-M symbol`, crystal_system_name=`Crystal System`) %>%
   inner_join(crystal_systems_list, by='crystal_system_name', copy=TRUE) %>%
+  select(crystal_class_name,h_m_symbol,crystal_system_id) %>%
+  mutate(h_m_symbol=as.character(h_m_symbol)) %>%
   distinct() %>%
   arrange(crystal_class_name)
 
 # LOAD into DB
-dbSendQuery(conn, "DELETE FROM crystal_classes_list;")
+dbSendQuery(conn, "drop table if exists crystal_classes_list;")
 dbWriteTable(conn, "crystal_classes_list", crystal_classes, append=TRUE)
 
 dbDisconnect(conn)

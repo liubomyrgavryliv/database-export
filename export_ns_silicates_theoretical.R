@@ -28,7 +28,7 @@ initial <- googlesheets4::read_sheet(
 silicates_unique <- googlesheets4::read_sheet(
   ss='1FCu3ywv1wVMP6IZjwFezjipXXC74S8hRbLZaNzZCWpg',
   sheet = 'Silicates',
-  range = 'A:B',
+  range = 'A:H',
   col_names = TRUE,
   col_types = 'c',
   na = ""
@@ -56,13 +56,17 @@ silicates_absent <-
   ns_silicates_theoretical %>%
   anti_join(silicates_unique, by = c('silicates_theoretical' = 'Ion'))
 
+# silicates duplicates
 ions_duplicates <- silicates_unique %>% 
   group_by(Ion) %>% 
   filter(n()>1)
 
+# silicates varieties, not present in silicate ions list
+varieties_absent <- silicates_unique %>%
+  select(Ion)
 
 # UPLOAD DATA TO DB
 dbDisconnect(conn)
 
 # EXPORT ms_species ------------------------------------------------------------
-write_csv(silicates_absent, path = paste0(path, 'silicates_absent.csv'), na='')
+write_csv(ions_duplicates, file = paste0(path, 'silicates_duplicates.csv'), na='')

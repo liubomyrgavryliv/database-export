@@ -3235,6 +3235,7 @@ Model characteristics
 <li><strong>Customizable</strong> – to be responsive to the needs of the researcher</li>
 <li><strong>Relational and nested</strong> – the data is organized into separate domains with intra- and cross-domain relations</li>
 <li><strong>FAIR</strong> – meet principles of findability, accessibility, interoperability, and reusability</li>
+<li><strong>Fast</strong> - find minerals on-the-fly</li>
 </ul>
 
 <h1 class="centered">
@@ -3274,7 +3275,7 @@ Data gathering
 
 </article></slide><slide class=""><hgroup><h2>Data ETL and enrich </h2><h3> <a href="https://github.com/liubomyrgavryliv/database-export">https://github.com/liubomyrgavryliv/database-export</a></h3></hgroup><article  class="smaller " id="data-etl-and-enrich-httpsgithub.comliubomyrgavrylivdatabase-export">
 
-<p>Initially, the data is loaded to <em>RStudio</em> and tested through next rules to make sure it meets the requirements of data warehouse:</p>
+<p>Initially, the data is loaded to <em>RStudio</em> and tested through next set of rules to make sure it meets the requirements of data warehouse:</p>
 
 <ul>
 <li>join with <strong>master table</strong> of mineral species through mineral names key
@@ -3301,6 +3302,25 @@ Data gathering
 </article></slide><slide class=""><hgroup><h2>Data validation, update/insert/delete on the DB side </h2><h3> <a href="https://github.com/liubomyrgavryliv/database-dev">https://github.com/liubomyrgavryliv/database-dev</a></h3></hgroup><article  class="smaller " id="data-validation-updateinsertdelete-on-the-db-side-httpsgithub.comliubomyrgavrylivdatabase-dev">
 
 <p><em>Python</em> scripts to keep the DB synched and upload new batches of validated data.</p>
+
+<ul>
+<li>functions to generate import tables</li>
+<li><em>validator</em> class
+
+<ul>
+<li>cross-check new batch of data with <strong>master tables</strong> in the DB</li>
+<li>record validation errors</li>
+<li>create &ldquo;pretty&rdquo; validation report which is sent to a mineralogist for a review</li>
+</ul></li>
+<li><em>updater</em> class
+
+<ul>
+<li>decide which event should occur depending on table type (if master -&gt; UPDATE/INSERT/DELETE, if many-to-many -&gt; INSERT and/or DELETE)</li>
+<li>record update events</li>
+</ul></li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>Example of data ETL to DB</h2></hgroup><article  class="smaller " id="example-of-data-etl-to-db">
 
 </article></slide><slide class=""><hgroup><h2>Mineralogical Nickel-Strunz classification </h2><h3> d3.js</h3></hgroup><article  class="smaller " id="mineralogical-nickel-strunz-classification-d3.js">
 

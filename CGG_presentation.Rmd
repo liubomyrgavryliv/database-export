@@ -33,6 +33,7 @@ knitr::opts_chunk$set(echo = FALSE)
   - **Customizable** – to be responsive to the needs of the researcher
   - **Relational and nested** – the data is organized into separate domains with intra- and cross-domain relations
   - **FAIR** – meet principles of findability, accessibility, interoperability, and reusability
+  - **Fast** - find minerals on-the-fly
 
 <h1 class="centered">Processes behind the scenes</h1></br>
 
@@ -56,7 +57,7 @@ The data comes in raw format from at least 3 different sources:
   
 ## Data ETL and enrich | <a href="https://github.com/liubomyrgavryliv/database-export">https://github.com/liubomyrgavryliv/database-export</a>
 
-Initially, the data is loaded to *RStudio* and tested through next rules to make sure it meets the requirements of data warehouse:
+Initially, the data is loaded to *RStudio* and tested through next set of rules to make sure it meets the requirements of data warehouse:
 
   - join with **master table** of mineral species through mineral names key 
     - create 'anti-join' subset for double check
@@ -73,13 +74,16 @@ Initially, the data is loaded to *RStudio* and tested through next rules to make
 
 *Python* scripts to keep the DB synched and upload new batches of validated data. 
   
-  - validator class
+  - functions to generate import tables
+  - *validator* class
     - cross-check new batch of data with **master tables** in the DB
-    -
-  - updater class
+    - record validation errors
+    - create "pretty" validation report which is sent to a mineralogist for a review
+  - *updater* class
     - decide which event should occur depending on table type (if master -> UPDATE/INSERT/DELETE, if many-to-many -> INSERT and/or DELETE)
-    - 
+    - record update events
 
+## Example of data ETL to DB
 
 ## Mineralogical Nickel-Strunz classification | d3.js 
 

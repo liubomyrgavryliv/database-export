@@ -19,7 +19,7 @@ conn <- dbConnect(RPostgres::Postgres(),dbname = 'master',
 initial <- googlesheets4::read_sheet(
   ss='1QA-Y229WNurpJA7KYmpiU2jn-_YJmrUfLq_lv0VFpXg',
   sheet = 'Nickel-Strunz',
-  range = 'A:K',
+  range = 'A:Q',
   col_names = TRUE,
   col_types = 'c',
   na = ""
@@ -63,10 +63,30 @@ ions_duplicates <- silicates_unique %>%
 
 # silicates varieties, not present in silicate ions list
 varieties_absent <- silicates_unique %>%
-  select(Ion)
+  select(`Variety of`) %>%
+  distinct(`Variety of`) %>%
+  anti_join(silicates_unique, by=c('Variety of'='Ion'))
+
+# ADD class, subclass and family to silicates from NS sheet
+silicates_unique <- silicates_unique %>%
+  distinct(Ion, .keep_all = T)
+
+ns_silicates <- initial %>%
+  select(silicates_theoretical, CLASS, SUBCLASS, FAMILY) %>%
+  mutate(silicates_theoretical = str_split(silicates_theoretical, ';')) %>%
+  unchop(silicates_theoretical, keep_empty = TRUE) %>%
+  group_by(silicates_theoretical) %>%
+  summarise(CLASS = CLASS,
+            SUBCLASS = SUBCLASS,
+            FAMILY = FAMILY) %>%
+  filter(!is.na(silicates_theoretical)) %>%
+  distinct() %>%
+  inner_join(silicates_unique, by=c('silicates_theoretical' = 'Ion'))
+
+
 
 # UPLOAD DATA TO DB
 dbDisconnect(conn)
 
 # EXPORT ms_species ------------------------------------------------------------
-write_csv(ions_duplicates, file = paste0(path, 'silicates_duplicates.csv'), na='')
+write_csv(ns_silicates, file = paste0(path, 'ns_silicates_cl.csv'), na='')

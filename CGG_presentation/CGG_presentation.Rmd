@@ -80,24 +80,55 @@ Initially, the data is loaded to *RStudio* and tested through next set of rules 
     - record validation errors
     - create "pretty" validation report which is sent to a mineralogist for a review
   - *updater* class
-    - decide which event should occur depending on table type (if master -> UPDATE/INSERT/DELETE, if many-to-many -> INSERT and/or DELETE)
+    - decide which event should occur depending on table type (if main minerals table -> UPDATE/INSERT/DELETE, if many-to-many -> INSERT and/or DELETE)
     - record update events
 
-## Example of data ETL to DB
+## Example of data ETL to DB | Upload of crystallography master tables
+```{r out.width = "75%", fig.align = "center"}
+knitr::include_graphics('CGG_slide.jpg')
+```
 
-## Mineralogical Nickel-Strunz classification | d3.js 
+## Back-end | <a href="https://github.com/liubomyrgavryliv/gpminerals">https://github.com/liubomyrgavryliv/gpminerals</a>
+
+The back-end consists of 4 *services*:
+
+  - Django app running behind the HTTPS NGINX proxy with Let's Encrypt SSL certificates
+  - NGINX server 
+  - Redis database for caching the API requests
+  - NoSQL database for seamless and fast searching (Elastic Search)
+  
+All of this is dockerized and deployed to AWS EC2 instance at <a href="https://gpminerals.org">gpminerals.org</a>.
+  
+## Front-end | <a href="https://github.com/liubomyrgavryliv/gpminerals-vue">https://github.com/liubomyrgavryliv/gpminerals-vue</a>
+
+Currently, the front-end contains several pieces, which are going to be stitched together soon:
+
+  - Main page, deployed as a PWA to <a href="https://data.gpminerals.org">https://data.gpminerals.org</a> (Quasar, Vue.js, AWS S3)
+  - d3.js interactive visualizations 
+  
+## The Search engine using Elastic Search (NoSQL) and Quasar
+<iframe width="180" height="400" src="https://data.gpminerals.org" scrolling="yes" frameborder="0" allowfullscreen></iframe>
+
+## Mineralogical Nickel-Strunz classification | d3.js <a href="https://liubomyrgavryliv.github.io/d3-NS-sunburst-webpack/">https://liubomyrgavryliv.github.io/d3-NS-sunburst-webpack/</a>
 
 <iframe width="180" height="400" src="https://liubomyrgavryliv.github.io/d3-NS-sunburst-webpack/" scrolling="yes" frameborder="0" allowfullscreen></iframe>
 
-## Slide with R Output
+## Mineralogical Groups classification | d3.js <a href="https://liubomyrgavryliv.github.io/d3-NS-groups-visualization/">https://liubomyrgavryliv.github.io/d3-NS-groups-visualization/</a>
 
-```{r cars, echo = TRUE}
-summary(cars)
-```
+<iframe width="180" height="400" src="https://liubomyrgavryliv.github.io/d3-NS-groups-visualization/" scrolling="yes" frameborder="0" allowfullscreen></iframe>
 
-## Slide with Plot
 
-```{r pressure}
-plot(pressure)
-```
+## Model approbation
+
+American Mineralogist has accepted our research paper on **"Analysis and visualization of the evolution of mineral discoveries, their distribution and naming process"**
+<a href="http://www.minsocam.org/MSA/Ammin/AM_Preprints.html">Papers in Press</a>
+
+The paper goes into the data analysis of Nickel-Strunz classes, name origins of minerals, country, and time of their discovery to enrich
+our knowledge of the evolution of mineral discoveries, their spatial distribution, and naming tendencies during different periods.
+
+## The dashboard, developed within the course of the paper | Python Dash, deployed to Heroku <a href="https://names-dashboard.herokuapp.com/">https://names-dashboard.herokuapp.com/</a>
+<iframe width="280" height="400" src="https://names-dashboard.herokuapp.com/" scrolling="yes" frameborder="0" allowfullscreen></iframe>
+
+
+## Thank you for attention :)
 

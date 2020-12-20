@@ -63,14 +63,19 @@ ms_species_crystal <- initial %>%
          β=as.numeric(str_replace_all(β,'\\(.*\\)', '')),
          γ=as.numeric(str_replace_all(γ,'\\(.*\\)', ''))
          ) %>%
-  
-  # filter(str_detect(`Crystal System`, 'trigonal')) %>%
-  # filter(a==b && a==c)
+  mutate(space_group_name=str_split(`Space group`, ', |;|,')) %>%
+  unchop(space_group_name, keep_empty = TRUE) %>%
+  left_join(crystal_systems_list, by=c('Crystal System' = 'crystal_system_name'), copy=TRUE) %>%
+  left_join(space_groups_list, by='space_group_name', copy=TRUE) %>%
+  left_join(ns_space_groups_list, by=c('space_group_name'='ns_space_group_name'), copy=TRUE) %>%
+  rename(space_group_id=space_group_id.x, mineral_name=`Mineral_Name`, alpha=α, beta=β, gamma=γ, z=Z) %>%
+  mutate(space_group_id=ifelse(!is.na(ns_space_group_id), space_group_id.y, space_group_id)) %>%
+  inner_join(ms_species, by='mineral_name', copy=TRUE) %>%
+  select(mineral_id, crystal_system_id, crystal_class_id, space_group_id, ns_space_group_id, a, b, c, alpha, beta, gamma, z)
 
-  
 
 # LOAD into DB
-dbSendQuery(conn, "delete from ns_space_groups_list;")
-dbWriteTable(conn, "ns_space_groups_list", ns_space_groups, append=TRUE)
+dbSendQuery(conn, "delete from ms_species_crystal;")
+dbWriteTable(conn, "ms_species_crystal", ms_species_crystal, append=TRUE)
 
 dbDisconnect(conn)

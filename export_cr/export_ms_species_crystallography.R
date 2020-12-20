@@ -53,6 +53,19 @@ validate <- initial %>%
   left_join(ns_space_groups_list, by='ns_space_group_name', copy=TRUE) %>%
   filter(is.na(ns_space_group_id))
   
+# parse a, b, c, alpha, beta, gamma to numeric
+ms_species_crystal <- initial %>%
+  filter(!is.na(`Crystal System`)) %>%
+  mutate(a=as.numeric(str_replace_all(a,'\\(.*\\)', '')),
+         b=as.numeric(str_replace_all(b,'\\(.*\\)', '')),
+         c=as.numeric(str_replace_all(c,'\\(.*\\)', '')),
+         α=as.numeric(str_replace_all(α,'\\(.*\\)', '')),
+         β=as.numeric(str_replace_all(β,'\\(.*\\)', '')),
+         γ=as.numeric(str_replace_all(γ,'\\(.*\\)', ''))
+         ) %>%
+  
+  # filter(str_detect(`Crystal System`, 'trigonal')) %>%
+  # filter(a==b && a==c)
 
   
 

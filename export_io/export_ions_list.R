@@ -39,6 +39,10 @@ variety_of_check <- initial %>%
   filter(!is.na(variety_of)) %>%
   left_join(initial, by=c('variety_of' = 'formula'))
 
+initial_ions <- initial %>%
+  select(formula) %>%
+  mutate(ion_id=row_number())
+
 ion_list <- initial %>%
   select(ion_type_name, ion_name, formula, formula_with_oxidation, variety_of, expressed_as, ion_class_name, ion_subclass_name,
          ion_group_name, ion_subgroup_name, structure_description, geometry) %>%
@@ -47,8 +51,10 @@ ion_list <- initial %>%
   left_join(ion_subclass_list, by='ion_subclass_name', copy=TRUE) %>%
   left_join(ion_group_list, by='ion_group_name', copy=TRUE) %>%
   left_join(ion_subgroup_list, by='ion_subgroup_name', copy=TRUE) %>%
-  select(ion_type_id, ion_name, formula, formula_with_oxidation, variety_of, expressed_as, ion_class_id, ion_subclass_id,
-         ion_group_id, ion_subgroup_id, structure_description, geometry)
+  left_join(initial_ions, by=c('variety_of'='formula'), copy=TRUE) %>%
+  select(ion_type_id, ion_name, formula, formula_with_oxidation, ion_id, expressed_as, ion_class_id, ion_subclass_id,
+         ion_group_id, ion_subgroup_id, structure_description, geometry) %>%
+  rename(variety_of = ion_id)
 
 
 # UPLOAD DATA TO DB

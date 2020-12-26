@@ -34,7 +34,8 @@ initial <- googlesheets4::read_sheet(
 # Parse anions ----------------------------------------------------------------
 
 ion_list <- initial %>%
-  
+  left_join(ion_type_list, by='ion_type_name', copy=TRUE)
+
 
 # UPLOAD DATA TO DB
 dbSendQuery(conn, "DELETE FROM ion_list;")

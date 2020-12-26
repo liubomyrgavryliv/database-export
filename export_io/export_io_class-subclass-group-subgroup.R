@@ -32,7 +32,7 @@ ion_class_list <- initial %>%
   distinct(ion_class_name) %>%
   arrange(ion_class_name) %>%
   mutate(ion_class_id = row_number()) %>%
-  select(ion_class_id, ion_class_name)
+  select(ion_class_name)
 
 ion_subclass_list <- initial %>%
   select(ion_subclass_name) %>%
@@ -40,7 +40,7 @@ ion_subclass_list <- initial %>%
   filter(!is.na(ion_subclass_name)) %>%
   arrange(ion_subclass_name) %>%
   mutate(ion_subclass_id = row_number()) %>%
-  select(ion_subclass_id, ion_subclass_name)
+  select(ion_subclass_name)
 
 ion_group_list <- initial %>%
   select(ion_group_name) %>%
@@ -48,7 +48,7 @@ ion_group_list <- initial %>%
   filter(!is.na(ion_group_name)) %>%
   arrange(ion_group_name) %>%
   mutate(ion_group_id = row_number()) %>%
-  select(ion_group_id, ion_group_name)
+  select(ion_group_name)
 
 ion_subgroup_list <- initial %>%
   select(ion_subgroup_name) %>%
@@ -56,20 +56,20 @@ ion_subgroup_list <- initial %>%
   filter(!is.na(ion_subgroup_name)) %>%
   arrange(ion_subgroup_name) %>%
   mutate(ion_subgroup_id = row_number()) %>%
-  select(ion_subgroup_id, ion_subgroup_name)
+  select(ion_subgroup_name)
   
 
 # UPLOAD DATA TO DB
-dbSendQuery(conn, "DELETE FROM ion_class_list WHERE 1=1;")
+dbSendQuery(conn, "TRUNCATE TABLE ion_class_list RESTART IDENTITY CASCADE;")
 dbWriteTable(conn, "ion_class_list", ion_class_list, append=TRUE)
 
-dbSendQuery(conn, "DELETE FROM ion_subclass_list;")
+dbSendQuery(conn, "TRUNCATE TABLE ion_subclass_list RESTART IDENTITY CASCADE;")
 dbWriteTable(conn, "ion_subclass_list", ion_subclass_list, append=TRUE)
 
-dbSendQuery(conn, "DELETE FROM ion_group_list;")
+dbSendQuery(conn, "TRUNCATE TABLE ion_group_list RESTART IDENTITY CASCADE;")
 dbWriteTable(conn, "ion_group_list", ion_group_list, append=TRUE)
 
-dbSendQuery(conn, "DELETE FROM ion_subgroup_list;")
+dbSendQuery(conn, "TRUNCATE TABLE ion_subgroup_list RESTART IDENTITY CASCADE;")
 dbWriteTable(conn, "ion_subgroup_list", ion_subgroup_list, append=TRUE)
 dbDisconnect(conn)
 

@@ -25,21 +25,35 @@ ion_type_list = tbl(conn, 'ion_type_list')
 initial <- googlesheets4::read_sheet(
   ss='1FCu3ywv1wVMP6IZjwFezjipXXC74S8hRbLZaNzZCWpg',
   sheet = 'Ions_data',
-  range = 'A:U',
+  range = 'A:X',
   col_names = TRUE,
   col_types = 'c',
   na = ""
 ) 
 
-# Parse anions ----------------------------------------------------------------
+# Parse ions ----------------------------------------------------------------
+
+variety_of_check <- initial %>%
+  select(variety_of) %>%
+  distinct(variety_of) %>%
+  filter(!is.na(variety_of)) %>%
+  left_join(initial, by=c('variety_of' = 'formula'))
 
 ion_list <- initial %>%
-  left_join(ion_type_list, by='ion_type_name', copy=TRUE)
+  select(ion_type_name, ion_name, formula, formula_with_oxidation, variety_of, expressed_as, ion_class_name, ion_subclass_name,
+         ion_group_name, ion_subgroup_name, structure_description, geometry) %>%
+  left_join(ion_type_list, by='ion_type_name', copy=TRUE) %>%
+  left_join(ion_class_list, by='ion_class_name', copy=TRUE) %>%
+  left_join(ion_subclass_list, by='ion_subclass_name', copy=TRUE) %>%
+  left_join(ion_group_list, by='ion_group_name', copy=TRUE) %>%
+  left_join(ion_subgroup_list, by='ion_subgroup_name', copy=TRUE) %>%
+  select(ion_type_id, ion_name, formula, formula_with_oxidation, variety_of, expressed_as, ion_class_id, ion_subclass_id,
+         ion_group_id, ion_subgroup_id, structure_description, geometry)
 
 
 # UPLOAD DATA TO DB
-dbSendQuery(conn, "DELETE FROM ion_list;")
-dbWriteTable(conn, "ions_list", ions_list, append=TRUE)
+dbSendQuery(conn, "TRUNCATE TABLE ion_list RESTART IDENTITY CASCADE;")
+dbWriteTable(conn, "ion_list", ion_list, append=TRUE)
 
 dbDisconnect(conn)
 

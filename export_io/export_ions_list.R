@@ -33,8 +33,11 @@ initial <- googlesheets4::read_sheet(
 
 # Parse anions ----------------------------------------------------------------
 
+ion_list <- initial %>%
+  
+
 # UPLOAD DATA TO DB
-dbSendQuery(conn, "DELETE FROM ions_list;")
+dbSendQuery(conn, "DELETE FROM ion_list;")
 dbWriteTable(conn, "ions_list", ions_list, append=TRUE)
 
 dbDisconnect(conn)

@@ -44,15 +44,15 @@ initial_ions <- initial %>%
   mutate(ion_id=row_number())
 
 ion_list <- initial %>%
-  select(ion_type_name, ion_name, formula, formula_with_oxidation, variety_of, expressed_as, ion_class_name, ion_subclass_name,
-         ion_group_name, ion_subgroup_name, structure_description, geometry) %>%
+  select(ion_type_name, ion_name, formula, formula_with_oxidation, overall_charge, variety_of, expressed_as, element_or_sulfide,
+         ion_class_name, ion_subclass_name, ion_group_name, ion_subgroup_name, structure_description, geometry) %>%
   left_join(ion_type_list, by='ion_type_name', copy=TRUE) %>%
   left_join(ion_class_list, by='ion_class_name', copy=TRUE) %>%
   left_join(ion_subclass_list, by='ion_subclass_name', copy=TRUE) %>%
   left_join(ion_group_list, by='ion_group_name', copy=TRUE) %>%
   left_join(ion_subgroup_list, by='ion_subgroup_name', copy=TRUE) %>%
   left_join(initial_ions, by=c('variety_of'='formula'), copy=TRUE) %>%
-  select(ion_type_id, ion_name, formula, formula_with_oxidation, ion_id, expressed_as, ion_class_id, ion_subclass_id,
+  select(ion_type_id, ion_name, formula, formula_with_oxidation, overall_charge, ion_id, expressed_as, element_or_sulfide, ion_class_id, ion_subclass_id,
          ion_group_id, ion_subgroup_id, structure_description, geometry) %>%
   rename(variety_of = ion_id)
 
@@ -61,7 +61,5 @@ ion_list <- initial %>%
 dbSendQuery(conn, "TRUNCATE TABLE ion_list RESTART IDENTITY CASCADE;")
 dbWriteTable(conn, "ion_list", ion_list, append=TRUE)
 
+# Disconnect from the DB
 dbDisconnect(conn)
-
-# EXPORT ms_species ------------------------------------------------------------
-write_csv(ions_list, path = paste0(path, 'ions_list.csv'), na='')

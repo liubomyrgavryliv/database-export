@@ -15,11 +15,11 @@ conn <- dbConnect(RPostgres::Postgres(),dbname = 'postgres',
                   password = 'BQBANe++XrmO5xWA3UqipNACx3Mf95kN')
 
 
-io_class = tbl(conn, 'io_class')
-io_subclass = tbl(conn, 'io_subclass')
-io_group = tbl(conn, 'io_group')
-io_subgroup = tbl(conn, 'io_subgroup')
-io_types_list = tbl(conn, 'io_types_list')
+ion_class_list = tbl(conn, 'ion_class_list')
+ion_subclass_list = tbl(conn, 'ion_subclass_list')
+ion_group_list = tbl(conn, 'ion_group_list')
+ion_subgroup_list = tbl(conn, 'ion_subgroup_list')
+ion_type_list = tbl(conn, 'ion_type_list')
 
 #Load data ---------------------------------------------------------------------
 cations <- googlesheets4::read_sheet(

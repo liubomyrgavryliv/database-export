@@ -29,9 +29,19 @@ initial <- googlesheets4::read_sheet(
 ) 
 
 # Parse ions ----------------------------------------------------------------
+
+ion_list <- ion_list %>% arrange(-ion_type_id)
+
+# check impurities
 mineral_impurity <- initial %>%
   select(Impurities, Content) %>%
-  filter(!is.na(Impurities))
+  filter(!is.na(Impurities)) %>%
+  mutate(Impurities = str_split(Impurities, '\\,\\ |\\;|,')) %>%
+  unchop(Impurities, keep_empty = TRUE) %>% 
+  distinct(Impurities) %>%
+  arrange(Impurities) %>%
+  left_join(ion_list, by=c('Impurities' = 'formula'), copy=TRUE) %>%
+  filter(is.na(ion_id))
 
 
 # UPLOAD DATA TO DB

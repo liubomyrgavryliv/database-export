@@ -29,12 +29,54 @@ initial <- googlesheets4::read_sheet(
 
 # Parse ions ----------------------------------------------------------------
 
-variety_of_check <- initial %>%
-  select(variety_of) %>%
-  distinct(variety_of) %>%
-  filter(!is.na(variety_of)) %>%
-  left_join(initial, by=c('variety_of' = 'formula'))
+# CHECK SUBUNITS
+ion_list_anions <- ion_list %>%
+  filter(ion_type_id == 1)
 
+ion_check <- initial %>%
+  select(anion_subunites) %>%
+  mutate(anion_subunites=str_split(anion_subunites, ';')) %>%
+  unchop(anion_subunites, keep_empty = TRUE) %>%
+  distinct(anion_subunites) %>%
+  filter(!is.na(anion_subunites)) %>%
+  left_join(ion_list_anions, by=c('anion_subunites'='formula'), copy=TRUE) %>%
+  filter(is.na(ion_id))
+
+ion_list_anions <- ion_list %>%
+  filter(ion_type_id == 2)
+
+ion_check <- initial %>%
+  select(anion_subunites) %>%
+  mutate(anion_subunites=str_split(anion_subunites, ';')) %>%
+  unchop(anion_subunites, keep_empty = TRUE) %>%
+  distinct(anion_subunites) %>%
+  filter(!is.na(anion_subunites)) %>%
+  left_join(ion_list_anions, by=c('anion_subunites'='formula'), copy=TRUE) %>%
+  filter(is.na(ion_id))
+
+ion_list_anions <- ion_list %>%
+  filter(ion_type_id == 3)
+
+ion_check <- initial %>%
+  select(anion_subunites) %>%
+  mutate(anion_subunites=str_split(anion_subunites, ';')) %>%
+  unchop(anion_subunites, keep_empty = TRUE) %>%
+  distinct(anion_subunites) %>%
+  filter(!is.na(anion_subunites)) %>%
+  left_join(ion_list_anions, by=c('anion_subunites'='formula'), copy=TRUE) %>%
+  filter(is.na(ion_id))
+
+ion_list_anions <- ion_list %>%
+  filter(ion_type_id == 4)
+
+ion_check <- initial %>%
+  select(anion_subunites) %>%
+  mutate(anion_subunites=str_split(anion_subunites, ';')) %>%
+  unchop(anion_subunites, keep_empty = TRUE) %>%
+  distinct(anion_subunites) %>%
+  filter(!is.na(anion_subunites)) %>%
+  left_join(ion_list_anions, by=c('anion_subunites'='formula'), copy=TRUE) %>%
+  filter(is.na(ion_id))
 initial_ions <- initial %>%
   select(formula) %>%
   mutate(ion_id=row_number())

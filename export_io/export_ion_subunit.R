@@ -33,7 +33,7 @@ initial <- googlesheets4::read_sheet(
 ion_list_anions <- ion_list %>%
   filter(ion_type_id == 1)
 
-ion_check <- initial %>%
+anions <- initial %>%
   select(anion_subunites) %>%
   mutate(anion_subunites=str_split(anion_subunites, ';')) %>%
   unchop(anion_subunites, keep_empty = TRUE) %>%
@@ -42,34 +42,46 @@ ion_check <- initial %>%
   left_join(ion_list_anions, by=c('anion_subunites'='formula'), copy=TRUE) %>%
   filter(is.na(ion_id))
 
-ion_list_anions <- ion_list %>%
+ion_list_cations <- ion_list %>%
   filter(ion_type_id == 2)
 
-ion_check <- initial %>%
-  select(anion_subunites) %>%
-  mutate(anion_subunites=str_split(anion_subunites, ';')) %>%
-  unchop(anion_subunites, keep_empty = TRUE) %>%
-  distinct(anion_subunites) %>%
-  filter(!is.na(anion_subunites)) %>%
-  left_join(ion_list_anions, by=c('anion_subunites'='formula'), copy=TRUE) %>%
+cations <- initial %>%
+  select(cation_subunites) %>%
+  mutate(cation_subunites=str_split(cation_subunites, ';')) %>%
+  unchop(cation_subunites, keep_empty = TRUE) %>%
+  distinct(cation_subunites) %>%
+  filter(!is.na(cation_subunites)) %>%
+  left_join(ion_list_cations, by=c('cation_subunites'='formula'), copy=TRUE) %>%
   filter(is.na(ion_id))
 
-ion_list_anions <- ion_list %>%
+ion_list_silicates <- ion_list %>%
   filter(ion_type_id == 3)
 
-ion_check <- initial %>%
-  select(anion_subunites) %>%
-  mutate(anion_subunites=str_split(anion_subunites, ';')) %>%
-  unchop(anion_subunites, keep_empty = TRUE) %>%
-  distinct(anion_subunites) %>%
-  filter(!is.na(anion_subunites)) %>%
-  left_join(ion_list_anions, by=c('anion_subunites'='formula'), copy=TRUE) %>%
+silicates <- initial %>%
+  select(silicate_subunites) %>%
+  mutate(silicate_subunites=str_split(silicate_subunites, ';')) %>%
+  unchop(silicate_subunites, keep_empty = TRUE) %>%
+  distinct(silicate_subunites) %>%
+  filter(!is.na(silicate_subunites)) %>%
+  left_join(ion_list_silicates, by=c('silicate_subunites'='formula'), copy=TRUE) %>%
   filter(is.na(ion_id))
 
-ion_list_anions <- ion_list %>%
+ion_list_other <- ion_list %>%
   filter(ion_type_id == 4)
 
-ion_check <- initial %>%
+other <- initial %>%
+  select(other_subunites) %>%
+  mutate(other_subunites=str_split(other_subunites, ';')) %>%
+  unchop(other_subunites, keep_empty = TRUE) %>%
+  distinct(other_subunites) %>%
+  filter(!is.na(other_subunites)) %>%
+  left_join(ion_list_other, by=c('other_subunites'='formula'), copy=TRUE) %>%
+  filter(is.na(ion_id))
+
+# FINISH Check -------------------------------------------------------------
+# Create subsets and merge into ion_subunit
+
+anions <- initial %>%
   select(anion_subunites) %>%
   mutate(anion_subunites=str_split(anion_subunites, ';')) %>%
   unchop(anion_subunites, keep_empty = TRUE) %>%
@@ -77,27 +89,38 @@ ion_check <- initial %>%
   filter(!is.na(anion_subunites)) %>%
   left_join(ion_list_anions, by=c('anion_subunites'='formula'), copy=TRUE) %>%
   filter(is.na(ion_id))
-initial_ions <- initial %>%
-  select(formula) %>%
-  mutate(ion_id=row_number())
 
-ion_list <- initial %>%
-  select(ion_type_name, ion_name, formula, formula_with_oxidation, overall_charge, variety_of, expressed_as, element_or_sulfide,
-         ion_class_name, ion_subclass_name, ion_group_name, ion_subgroup_name, structure_description, geometry) %>%
-  left_join(ion_type_list, by='ion_type_name', copy=TRUE) %>%
-  left_join(ion_class_list, by='ion_class_name', copy=TRUE) %>%
-  left_join(ion_subclass_list, by='ion_subclass_name', copy=TRUE) %>%
-  left_join(ion_group_list, by='ion_group_name', copy=TRUE) %>%
-  left_join(ion_subgroup_list, by='ion_subgroup_name', copy=TRUE) %>%
-  left_join(initial_ions, by=c('variety_of'='formula'), copy=TRUE) %>%
-  select(ion_type_id, ion_name, formula, formula_with_oxidation, overall_charge, ion_id, expressed_as, element_or_sulfide, ion_class_id, ion_subclass_id,
-         ion_group_id, ion_subgroup_id, structure_description, geometry) %>%
-  rename(variety_of = ion_id)
+cations <- initial %>%
+  select(cation_subunites) %>%
+  mutate(cation_subunites=str_split(cation_subunites, ';')) %>%
+  unchop(cation_subunites, keep_empty = TRUE) %>%
+  distinct(cation_subunites) %>%
+  filter(!is.na(cation_subunites)) %>%
+  left_join(ion_list_cations, by=c('cation_subunites'='formula'), copy=TRUE) %>%
+  filter(is.na(ion_id))
+
+silicates <- initial %>%
+  select(silicate_subunites) %>%
+  mutate(silicate_subunites=str_split(silicate_subunites, ';')) %>%
+  unchop(silicate_subunites, keep_empty = TRUE) %>%
+  distinct(silicate_subunites) %>%
+  filter(!is.na(silicate_subunites)) %>%
+  left_join(ion_list_silicates, by=c('silicate_subunites'='formula'), copy=TRUE) %>%
+  filter(is.na(ion_id))
+
+other <- initial %>%
+  select(other_subunites) %>%
+  mutate(other_subunites=str_split(other_subunites, ';')) %>%
+  unchop(other_subunites, keep_empty = TRUE) %>%
+  distinct(other_subunites) %>%
+  filter(!is.na(other_subunites)) %>%
+  left_join(ion_list_other, by=c('other_subunites'='formula'), copy=TRUE) %>%
+  filter(is.na(ion_id))
 
 
 # UPLOAD DATA TO DB
-dbSendQuery(conn, "TRUNCATE TABLE ion_list RESTART IDENTITY CASCADE;")
-dbWriteTable(conn, "ion_list", ion_list, append=TRUE)
+dbSendQuery(conn, "TRUNCATE TABLE ion_subunit RESTART IDENTITY CASCADE;")
+dbWriteTable(conn, "ion_subunit", ion_subunit, append=TRUE)
 
 # Disconnect from the DB
 dbDisconnect(conn)

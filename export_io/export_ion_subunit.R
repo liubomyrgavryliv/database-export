@@ -82,41 +82,51 @@ other <- initial %>%
 # Create subsets and merge into ion_subunit
 
 anions <- initial %>%
-  select(anion_subunites) %>%
+  select(formula, anion_subunites) %>%
   mutate(anion_subunites=str_split(anion_subunites, ';')) %>%
   unchop(anion_subunites, keep_empty = TRUE) %>%
-  distinct(anion_subunites) %>%
   filter(!is.na(anion_subunites)) %>%
   left_join(ion_list_anions, by=c('anion_subunites'='formula'), copy=TRUE) %>%
-  filter(is.na(ion_id))
+  select(formula, ion_id) %>%
+  rename(subunit_id=ion_id) %>%
+  left_join(ion_list, by=c('formula'='formula'), copy=TRUE) %>%
+  select(ion_id, subunit_id)
 
 cations <- initial %>%
-  select(cation_subunites) %>%
+  select(formula, cation_subunites) %>%
   mutate(cation_subunites=str_split(cation_subunites, ';')) %>%
   unchop(cation_subunites, keep_empty = TRUE) %>%
-  distinct(cation_subunites) %>%
   filter(!is.na(cation_subunites)) %>%
   left_join(ion_list_cations, by=c('cation_subunites'='formula'), copy=TRUE) %>%
-  filter(is.na(ion_id))
+  select(formula, ion_id) %>%
+  rename(subunit_id=ion_id) %>%
+  left_join(ion_list, by=c('formula'='formula'), copy=TRUE) %>%
+  select(ion_id, subunit_id)
 
 silicates <- initial %>%
-  select(silicate_subunites) %>%
+  select(formula, silicate_subunites) %>%
   mutate(silicate_subunites=str_split(silicate_subunites, ';')) %>%
   unchop(silicate_subunites, keep_empty = TRUE) %>%
-  distinct(silicate_subunites) %>%
   filter(!is.na(silicate_subunites)) %>%
   left_join(ion_list_silicates, by=c('silicate_subunites'='formula'), copy=TRUE) %>%
-  filter(is.na(ion_id))
+  select(formula, ion_id) %>%
+  rename(subunit_id=ion_id) %>%
+  left_join(ion_list, by=c('formula'='formula'), copy=TRUE) %>%
+  select(ion_id, subunit_id)
 
 other <- initial %>%
-  select(other_subunites) %>%
+  select(formula, other_subunites) %>%
   mutate(other_subunites=str_split(other_subunites, ';')) %>%
   unchop(other_subunites, keep_empty = TRUE) %>%
-  distinct(other_subunites) %>%
   filter(!is.na(other_subunites)) %>%
   left_join(ion_list_other, by=c('other_subunites'='formula'), copy=TRUE) %>%
-  filter(is.na(ion_id))
+  select(formula, ion_id) %>%
+  rename(subunit_id=ion_id) %>%
+  left_join(ion_list, by=c('formula'='formula'), copy=TRUE) %>%
+  select(ion_id, subunit_id)
 
+ion_subunit <- union(anions, cations, silicates, other) %>%
+  arrange(ion_id, subunit_id)
 
 # UPLOAD DATA TO DB
 dbSendQuery(conn, "TRUNCATE TABLE ion_subunit RESTART IDENTITY CASCADE;")

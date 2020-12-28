@@ -25,15 +25,16 @@ initial <- googlesheets4::read_sheet(
 ) 
 
 # PROCESS DATA -----------------------------------------------------------------
-goldschmidt_class_list <- initial %>%
-  select(goldschmidt_classification) %>%
-  rename(goldschmidt_class_name = goldschmidt_classification) %>%
-  distinct(goldschmidt_class_name) %>%
-  arrange(goldschmidt_class_name)
+bonding_type_list <- initial %>%
+  select(bonding_type) %>%
+  rename(bonding_type_name = bonding_type) %>%
+  distinct(bonding_type_name) %>%
+  filter(!is.na(bonding_type_name)) %>%
+  arrange(bonding_type_name)
 
 # UPLOAD DATA TO DB
-dbSendQuery(conn, "TRUNCATE TABLE goldschmidt_class_list RESTART IDENTITY CASCADE;")
-dbWriteTable(conn, "goldschmidt_class_list", goldschmidt_class_list, append=TRUE)
+dbSendQuery(conn, "TRUNCATE TABLE bonding_type_list RESTART IDENTITY CASCADE;")
+dbWriteTable(conn, "bonding_type_list", bonding_type_list, append=TRUE)
 
 
 dbDisconnect(conn)

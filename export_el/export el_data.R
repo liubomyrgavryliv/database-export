@@ -7,9 +7,9 @@ setwd("~/Dropbox/GP-minerals/R scripts/export_to_SQL/")
 rm(list=ls())
 path <- 'export/'
 
-conn <- dbConnect(RPostgres::Postgres(),dbname = 'master', 
-                  host = 'ec2-18-184-252-245.eu-central-1.compute.amazonaws.com',
-                  port = 5433,
+conn <- dbConnect(RPostgres::Postgres(),dbname = 'postgres', 
+                  host = 'master.c6ya4cff5frj.eu-central-1.rds.amazonaws.com',
+                  port = 5432,
                   user = 'postgres',
                   password = 'BQBANe++XrmO5xWA3UqipNACx3Mf95kN')
 
@@ -48,9 +48,8 @@ el_data <- initial %>%
   arrange(!desc(atomic_number))
 
 # UPLOAD DATA TO DB
-dbSendQuery(conn, "DELETE FROM el_data;")
-dbWriteTable(conn, "el_data", el_data, append=TRUE)
-dbDisconnect(conn)
+dbSendQuery(conn, "TRUNCATE TABLE element_list RESTART IDENTITY CASCADE;")
+dbWriteTable(conn, "element_list", element_list, append=TRUE)
 
-# EXPORT ms_species ------------------------------------------------------------
-write_csv(el_data, path = paste0(path, 'el_data.csv'), na='')
+
+dbDisconnect(conn)

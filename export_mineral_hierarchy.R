@@ -167,7 +167,13 @@ group_supergroup <- groups %>%
 
 # FINAL SUBSET
 
-mineral_hierarchy <- rbind(minerals, series, roots, subgroups, group_supergroup)
+
+mineral_hierarchy <- rbind(minerals, series, roots, subgroups, group_supergroup) %>%
+  inner_join(mineral_list, by=c('mineral_name' = 'mineral_name'), copy=TRUE) %>%
+  inner_join(mineral_list, by=c('parent_id' = 'mineral_name'), copy=TRUE) %>%
+  select(mineral_id.x, mineral_id.y, is_top_level) %>%
+  rename(mineral_id=mineral_id.x, parent_id=mineral_id.y) %>%
+  distinct()
 
 
 # UPLOAD DATA TO DB

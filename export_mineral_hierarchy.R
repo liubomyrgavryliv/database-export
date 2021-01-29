@@ -32,15 +32,17 @@ minerals <- initial %>%
   filter(!is.na(mineral_name))
 
 minerals_series <- minerals %>%
-  select(mineral_name, serie) %>%
   filter(!is.na(serie)) %>%
-  select(mineral_name, serie) %>%
-  distinct()
+  distinct(mineral_name, serie, .keep_all = TRUE) %>%
+  mutate(is_top_level = ifelse(is.na(root) & is.na(subgroup) & is.na(group) & is.na(supergroup), 1, 0)) %>%
+  select(mineral_name, serie, is_top_level)
+  # group_by(mineral_name, serie, is_top_level) %>%
+  # filter(n() > 1)
 
 minerals_roots <- minerals %>%
-  select(mineral_name, serie, root) %>%
   filter(is.na(serie) & !is.na(root)) %>%
-  select(mineral_name, root) %>%
+  mutate(is_top_level = ifelse(is.na(subgroup) & is.na(group) & is.na(supergroup), 1, 0)) %>%
+  select(mineral_name, root, is_top_level) %>%
   distinct()
 
 minerals_subgroup <- minerals %>%
@@ -59,6 +61,43 @@ minerals_supergroup <- minerals %>%
   select(mineral_name, serie, root, subgroup, group, supergroup) %>%
   filter(is.na(serie) & is.na(root) & is.na(subgroup) & is.na(group) & !is.na(supergroup)) %>%
   distinct()
+
+# create series subset ------------------------------------------------------------------------
+
+minerals <- initial %>%
+  filter(!is.na(mineral_name))
+
+minerals_series <- minerals %>%
+  filter(!is.na(serie)) %>%
+  distinct(mineral_name, serie, .keep_all = TRUE) %>%
+  mutate(is_top_level = ifelse(is.na(root) & is.na(subgroup) & is.na(group) & is.na(supergroup), 1, 0)) %>%
+  select(mineral_name, serie, is_top_level)
+# group_by(mineral_name, serie, is_top_level) %>%
+# filter(n() > 1)
+
+minerals_roots <- minerals %>%
+  filter(is.na(serie) & !is.na(root)) %>%
+  mutate(is_top_level = ifelse(is.na(subgroup) & is.na(group) & is.na(supergroup), 1, 0)) %>%
+  select(mineral_name, root, is_top_level) %>%
+  distinct()
+
+minerals_subgroup <- minerals %>%
+  select(mineral_name, serie, root, subgroup) %>%
+  filter(is.na(serie) & is.na(root) & !is.na(subgroup)) %>%
+  select(mineral_name, subgroup) %>%
+  distinct()
+
+minerals_group <- minerals %>%
+  select(mineral_name, serie, root, subgroup, group) %>%
+  filter(is.na(serie) & is.na(root) & is.na(subgroup) & !is.na(group)) %>%
+  select(mineral_name, group) %>%
+  distinct()
+
+minerals_supergroup <- minerals %>%
+  select(mineral_name, serie, root, subgroup, group, supergroup) %>%
+  filter(is.na(serie) & is.na(root) & is.na(subgroup) & is.na(group) & !is.na(supergroup)) %>%
+  distinct()
+
 
 mineral_hierarchy <- initial %>%
   select(Mineral_Name, LOCALITY, Type, Note) %>%

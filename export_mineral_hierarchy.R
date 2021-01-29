@@ -76,15 +76,35 @@ series <- initial %>%
   filter(!is.na(serie))
 
 series_root <- series %>%
-  filter(!is.na(serie)) %>%
-  distinct(mineral_name, serie, .keep_all = TRUE) %>%
-  mutate(is_top_level = ifelse(is.na(root) & is.na(subgroup) & is.na(group) & is.na(supergroup), 1, 0)) %>%
-  select(mineral_name, serie, is_top_level)
-# group_by(mineral_name, serie, is_top_level) %>%
-# filter(n() > 1)
+  filter(!is.na(root)) %>%
+  mutate(is_top_level = ifelse(is.na(subgroup) & is.na(group) & is.na(supergroup), 1, 0)) %>%
+  select(serie, root, is_top_level) %>%
+  distinct() %>%
+  rename(parent_id=root, mineral_name=serie)
 
+series_subgroup <- series %>%
+  filter(is.na(root) & !is.na(subgroup)) %>%
+  mutate(is_top_level = ifelse(is.na(group) & is.na(supergroup), 1, 0)) %>%
+  select(serie, subgroup, is_top_level) %>%
+  distinct() %>%
+  rename(parent_id=subgroup, mineral_name=serie)
 
+series_group <- series %>%
+  filter(is.na(root) & is.na(subgroup) & !is.na(group)) %>%
+  mutate(is_top_level = ifelse(is.na(supergroup), 1, 0)) %>%
+  select(serie, group, is_top_level) %>%
+  distinct() %>%
+  rename(parent_id=group, mineral_name=serie)
 
+series_supergroup <- series %>%
+  filter(is.na(root) & is.na(subgroup) & is.na(group) & !is.na(supergroup)) %>%
+  mutate(is_top_level = 1) %>%
+  select(serie, supergroup, is_top_level) %>%
+  distinct() %>%
+  rename(parent_id=supergroup, mineral_name=serie)
+
+series <- rbind(series_root, series_root, series_subgroup, series_group, series_supergroup)
+# create roots subset ------------------------------------------------------------------------
 
 mineral_hierarchy <- initial %>%
   select(Mineral_Name, LOCALITY, Type, Note) %>%

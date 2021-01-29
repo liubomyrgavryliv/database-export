@@ -131,17 +131,43 @@ root_supergroup <- roots %>%
   distinct() %>%
   rename(parent_id=supergroup, mineral_name=root)
 
+roots <- rbind(root_subgroup, root_group, root_supergroup)
+# create subgroup subset ------------------------------------------------------------------------
 
+subgroups <- initial %>%
+  filter(!is.na(subgroup))
 
-mineral_hierarchy <- initial %>%
-  select(Mineral_Name, LOCALITY, Type, Note) %>%
-  filter(!is.na(LOCALITY)) %>%
-  left_join(locality_type_list, by = c('Type' = 'locality_type_name'), copy = TRUE) %>%
-  select(-c( note)) %>%
-  left_join(mineral_list, by=c('Mineral_Name'='mineral_name'), copy=TRUE) %>%
-  filter(!is.na(mineral_id)) %>% # COMPARE MINERALS WITH MASTER TABLE !
-  select(mineral_id, LOCALITY, locality_type_id, Note) %>%
-  rename(locality_name=LOCALITY, note=Note)
+subgroup_group <- subgroups %>%
+  filter(!is.na(group)) %>%
+  mutate(is_top_level = ifelse(is.na(supergroup), 1, 0)) %>%
+  select(subgroup, group, is_top_level) %>%
+  distinct() %>%
+  rename(parent_id=group, mineral_name=subgroup)
+
+subgroup_supergroup <- subgroups %>%
+  filter(is.na(group) & !is.na(supergroup)) %>%
+  mutate(is_top_level = 1) %>%
+  select(subgroup, supergroup, is_top_level) %>%
+  distinct() %>%
+  rename(parent_id=supergroup, mineral_name=subgroup)
+
+subgroups <- rbind(subgroup_group, subgroup_supergroup)
+
+# create group subset ------------------------------------------------------------------------
+
+groups <- initial %>%
+  filter(!is.na(group))
+
+group_supergroup <- groups %>%
+  filter(!is.na(supergroup)) %>%
+  mutate(is_top_level = 1) %>%
+  select(supergroup, group, is_top_level) %>%
+  distinct() %>%
+  rename(parent_id=supergroup, mineral_name=group)
+
+# FINAL SUBSET
+
+mineral_hierarchy <- rbind(minerals, series, roots, subgroups, group_supergroup)
 
 
 # UPLOAD DATA TO DB

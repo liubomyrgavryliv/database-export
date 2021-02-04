@@ -166,7 +166,7 @@ group_supergroup <- groups %>%
   rename(parent_id=supergroup, mineral_name=group)
 
 hierarchy <- rbind(minerals, series, roots, subgroups, group_supergroup) %>%
-  select(!is_top_level)
+  select(!is_top_level) 
 
 # Create subset with parent_id - NULL values
 parents <- hierarchy %>%
@@ -177,13 +177,13 @@ parents <- hierarchy %>%
   
   # FINAL SUBSET
   mineral_hierarchy <-
-  hierarchy %>%
-  rbind(parents) %>%
-  left_join(mineral_list, by=c('mineral_name' = 'mineral_name'), copy=TRUE) %>%
-  left_join(mineral_list, by=c('parent_id' = 'mineral_name'), copy=TRUE) %>%
-  select(mineral_id.x, mineral_id.y) %>%
-  rename(mineral_id=mineral_id.x, parent_id=mineral_id.y) %>%
-  distinct()
+    hierarchy %>%
+    rbind(parents) %>%
+    inner_join(mineral_list, by=c('mineral_name' = 'mineral_name'), copy=TRUE) %>%
+    left_join(mineral_list, by=c('parent_id' = 'mineral_name'), copy=TRUE) %>%
+    select(mineral_id.x, mineral_id.y) %>%
+    rename(mineral_id=mineral_id.x, parent_id=mineral_id.y) %>%
+    distinct()
 
 
 # UPLOAD DATA TO DB

@@ -27,6 +27,15 @@ initial <- googlesheets4::read_sheet(
 mineral_list <- tbl(conn, 'mineral_list')
 
 # PROCESS DATA -----------------------------------------------------------------
+# check duplicates
+check <- initial %>%
+  select(supergroup, group, subgroup, root, serie, mineral_name) %>%
+  group_by(mineral_name) %>%
+  filter(n() > 1) %>%
+  distinct() %>%
+  arrange(mineral_name)
+
+
 # create minerals subset, eg mineral_id is mineral, parent_id is serie, root, subgroup etc ----------------------------------------
 minerals <- initial %>%
   filter(!is.na(mineral_name))
@@ -165,11 +174,11 @@ group_supergroup <- groups %>%
   distinct() %>%
   rename(parent_id=supergroup, mineral_name=group)
 
-hierarchy <- rbind(minerals, series, roots, subgroups, group_supergroup) %>%
-  select(!is_top_level) 
+hierarchy <- rbind(minerals, series, roots, subgroups, group_supergroup)
 
 # Create subset with parent_id - NULL values
 parents <- hierarchy %>%
+  filter(is_top_level == 1) %>%
   rename(parent_id=mineral_name, mineral_name=parent_id) %>%
   mutate(parent_id=NA) %>%
   select(mineral_name, parent_id) %>%
@@ -178,6 +187,7 @@ parents <- hierarchy %>%
   # FINAL SUBSET
   mineral_hierarchy <-
     hierarchy %>%
+    select(!is_top_level) %>%
     rbind(parents) %>%
     inner_join(mineral_list, by=c('mineral_name' = 'mineral_name'), copy=TRUE) %>%
     left_join(mineral_list, by=c('parent_id' = 'mineral_name'), copy=TRUE) %>%
@@ -185,6 +195,8 @@ parents <- hierarchy %>%
     rename(mineral_id=mineral_id.x, parent_id=mineral_id.y) %>%
     distinct()
 
+  mineral_hierarchy %>%
+    filter(mineral_id == '2a1a1e9a-ac5d-4356-bb09-34d543460e61')
 
 # UPLOAD DATA TO DB
 dbSendQuery(conn, "TRUNCATE TABLE mineral_hierarchy RESTART IDENTITY CASCADE;")

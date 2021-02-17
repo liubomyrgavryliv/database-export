@@ -113,7 +113,7 @@ mindex_out <- status %>%
   select(!Index) %>%
   rename(`Non-standart settings` = Note) %>%
   left_join(physical, by='Mineral_Name') %>%
-  select(!c(Index, all_indexes, discovery_year_min, VarKey)) %>%
+  select(!c(Index, all_indexes, VarKey)) %>%
   mutate(Hardness = case_when(
     H_min != H_max ~ paste0(H_min, '-', H_max),
     H_min == H_max ~ paste0(H_min)
@@ -127,6 +127,7 @@ mindex_out <- status %>%
   mutate(Index_Legend_Range = str_replace(Index_Legend_Range, '\\)$', '')) %>%
   left_join(names, by = 'Mineral_Name') %>%
   mutate_all(~str_replace_na(., "")) %>%
+  mutate('Type Locality' = ifelse(Type != '', paste0(LOCALITY, ', ', Country, ifelse(Note == '', '', paste0('; ', Note))), NA)) %>%
   mutate(`Named for` = case_when(
     Person != '' ~ paste0(Person, ' (', ifelse(Nationality == '', '', paste0(Nationality, '; ')), 
                             ifelse(Born == '', '', paste0(Born, ' - ', Died)), ') ', Role),
@@ -145,17 +146,18 @@ mindex_out <- status %>%
   select(Mineral_Name, `Approval history`, Groups, Strunz, Formula, `Crystal System`, `Class Name`,
          `H-M symbol`, `Space group`, `Non-standart settings`, Diaphaneity, color, Streak, Luster, Cleavage, Fracture,
          Tenacity, Hardness, `Density measured`, `D(calc,)`, `Habit(main)`, `Named for`, Index_Legend_Label, Index_Legend_Range,
-         `Groups Short`) %>%
+         `Groups Short`, `Type Locality`) %>%
   left_join(mindex, by = c('Mineral_Name' = 'Mineral Name')) %>%
   left_join(e_rocks, by=c('Mineral_Name'='Title')) %>%
   mutate(url_title=tolower(str_replace_all(Mineral_Name, '[()]', ''))) %>%
   mutate(`URL to e-Rocks1` = ifelse(!is.na(Nid),paste0('https://e-rocks.com/node/',Nid), NA)) %>%
   mutate(`URL to e-Rocks` = ifelse(is.na(`URL to e-Rocks`),`URL to e-Rocks1`, `URL to e-Rocks`)) %>%
+  mutate(`URL to e-Rocks` = ifelse(Mineral_Name == "O'Danielite",'https://e-rocks.com/minerals/5148/odanielite', `URL to e-Rocks`)) %>%
   select(Mineral_Name, `Approval history`, Groups, Synonyms, Varieties, `Strunz 8th edition`, `Dana 8th edition`, Strunz,
          `Hey's 3rd edition`, Formula, `Crystal System`, `Class Name`,
          `H-M symbol`, `Space group`, `Non-standart settings`, Diaphaneity, color, Streak, Luster, Cleavage, Fracture,
          Tenacity, Hardness, `Density measured`, `D(calc,)`, `Habit(main)`, `Geological occurrence`, `Localities`, `References`,
-         `Named for`, Index_Legend_Label, Index_Legend_Range, `URL to e-Rocks`, `Context`, `Groups Short`) %>%
+         `Named for`,`Type Locality`, Index_Legend_Label, Index_Legend_Range, `URL to e-Rocks`, `Context`, `Groups Short`) %>%
   rename(`Strunz 10th edition`=Strunz,`Optical Properties` = Diaphaneity, Colour=color, Lustre=Luster, `Density calculated` = `D(calc,)`,
          Habit = `Habit(main)`, Distribution=Index_Legend_Label, `Distribution Range`=Index_Legend_Range)
 
@@ -168,5 +170,6 @@ mindex_out[mindex_out==""]<-NA
 # export CSV --------------------------------------
 write.csv(mindex_out, 'Mindex_16112020.csv', na='', quote = F, row.names = F)
 write_csv(mindex_out, 'Mindex_24112020.csv', na='', quote_escape = "double")
+write_csv(mindex_out, 'Mindex_17022021.csv', na='', quote_escape = "double")
 
 

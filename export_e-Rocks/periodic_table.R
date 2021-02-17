@@ -77,3 +77,4 @@ periodic_table %>%
 
 # Export data
 write.csv(periodic_table, 'periodic_table_10022021.csv', na='', quote = F, row.names = F)
+write_csv(periodic_table, 'periodic_table_10022021.csv', na='', quote_escape = "double")

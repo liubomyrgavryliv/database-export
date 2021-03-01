@@ -4,13 +4,12 @@ library(tidyjson)
 library(DBI)
 library(RCurl)
 library("writexl")
-setwd("~/Dropbox/GP-minerals/R scripts/export_to_SQL/")
+setwd("~/Dropbox/GP-minerals/R scripts/export_to_SQL")
 rm(list=ls())
-path <- 'export/'
-source('functions.R')
+path <- 'export_e-Rocks/'
 
 #Load data ---------------------------------------------------------------------
-e_rocks <- read.csv(paste0(path, 'minerals (5).csv')) %>%
+e_rocks <- read.csv(paste0(path, 'minerals (10).csv')) %>%
   select(Title, Nid)
 
 status <- googlesheets4::read_sheet(
@@ -92,7 +91,9 @@ mindex <- googlesheets4::read_sheet(
          `Geological occurrence`, `Localities`, `URL to e-Rocks`, `References`, `Context`)
 
   
-# Add fields to data -----------------------------------------------------------
+# Cross-check e-rocks data with ours -------------------------------------
+
+
 
 # pre-parse groups ----
 groups_parsed <- groups %>%

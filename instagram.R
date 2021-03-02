@@ -3,10 +3,9 @@ library(googlesheets4)
 library(tidyjson)
 library(DBI)
 library(RCurl)
-setwd("~/post-doc/R scripts/export_to_SQL/")
+setwd("~/Dropbox/GP-minerals/R scripts/export_to_SQL/")
 rm(list=ls())
 path <- 'export/'
-source('functions.R')
 
 
 #Load data ---------------------------------------------------------------------
@@ -19,10 +18,13 @@ initial <- googlesheets4::read_sheet(
   na = ""
 ) 
 
-# Process the data
-
+# minerals named after flowers 02/03/21
 stats <- initial %>%
-  select(Mineral_Name, discovery_year_min) %>%
-  group_by(discovery_year_min) %>%
-  summarise(counts = n_distinct(Mineral_Name)) %>%
-  arrange(discovery_year_min)
+  filter_at(.vars = vars(Person, Role, LOCALITY, Note, Meaning, LANGUAGE, Stem1, Stem2, Stem3, CHEMISTRY, other, note),
+            .vars_predicate = any_vars(str_detect(. , 'flower'))) %>%
+  select(Mineral_Name, discovery_year_min, discovery_country, Meaning, LANGUAGE, Stem1, Stem2, Stem3, other, note)
+
+
+# Export data
+
+write_csv(stats, 'stats.csv', na='', quote_escape = "double")

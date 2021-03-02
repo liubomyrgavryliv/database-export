@@ -9,8 +9,8 @@ rm(list=ls())
 path <- 'export_e-Rocks/'
 
 #Load data ---------------------------------------------------------------------
-e_rocks <- read.csv(paste0(path, 'minerals (10).csv')) %>%
-  select(Title, Nid)
+e_rocks <- read.csv(paste0(path, 'minerals (10).csv')) 
+  # select(Title, Nid)
 
 status <- googlesheets4::read_sheet(
   ss='1QA-Y229WNurpJA7KYmpiU2jn-_YJmrUfLq_lv0VFpXg',
@@ -38,12 +38,6 @@ physical <- googlesheets4::read_sheet(
   col_types = 'c',
   na = ""
 ) 
-
-status <- 
-  status %>%
-  filter(str_detect(all_indexes, '0.0')) %>%
-  select(Mineral_Name, IMA.Status) %>%
-  rename('Approval history' = IMA.Status)
 
 groups <- googlesheets4::read_sheet(
   ss='1Wo6n1xggXkITCCApdt_tLsNHOKMxyOgsMqSVpRecYsE',
@@ -93,6 +87,10 @@ mindex <- googlesheets4::read_sheet(
   
 # Cross-check e-rocks data with ours -------------------------------------
 
+missing <- e_rocks %>%
+  anti_join(status, by=c("Title"="Mineral_Name")) %>%
+  filter(Class == 'Mineral') %>%
+  filter(str_detect(Title, 'Alice'))
 
 
 # pre-parse groups ----
@@ -105,6 +103,12 @@ groups_parsed <- groups %>%
             Aliases = paste(unique(Aliases), collapse = ';'),
             Series = paste(unique(Series), collapse = ';')) %>%
   mutate_all(~str_replace_all(.,'NA', NA_character_))
+
+status <- 
+  status %>%
+  filter(str_detect(all_indexes, '0.0')) %>%
+  select(Mineral_Name, IMA.Status) %>%
+  rename('Approval history' = IMA.Status)
 
 mindex_out <- status %>%
   left_join(groups_parsed, by = c('Mineral_Name' = 'Minerals_Names')) %>%
@@ -172,5 +176,6 @@ mindex_out[mindex_out==""]<-NA
 write.csv(mindex_out, 'Mindex_16112020.csv', na='', quote = F, row.names = F)
 write_csv(mindex_out, 'Mindex_24112020.csv', na='', quote_escape = "double")
 write_csv(mindex_out, 'Mindex_17022021.csv', na='', quote_escape = "double")
+write_csv(missing, 'missing.csv', na='', quote_escape = "double")
 
 

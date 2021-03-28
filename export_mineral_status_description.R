@@ -35,8 +35,14 @@ impurity <- initial %>%
   mutate(Impurities = str_split(Impurities, '\\,\\ |\\;|,'),
          Content = str_split(Content, '\\,\\ |\\;|,')) %>%
   unchop(cols=c('Impurities', 'Content'), keep_empty = TRUE) %>% 
-  distinct(Impurities) %>%
-  arrange(Impurities) %>%
+  mutate(Content = ifelse(Content == '(+)', 'rich', Content)) %>%
+  mutate(Content = ifelse(Content == '(-)', 'poor', Content)) %>%
+  mutate(Content = ifelse(str_detect(Content, '[0-9]'), paste0(Content, ' %'), Content)) %>%
+  group_by(Mineral_Name) %>%
+  summarise(test = ifelse(length(unique(Content)) == 1, 
+                          # ifelse(length(Impurities) > 1, paste0('(', paste0(Impurities, collapse = ', '), ') ', Content), paste0(Impurities,' ',Content)),
+                          paste0(paste0(Impurities, collapse = '-'), ' ', Content),
+                          paste0(Impurities,' ', Content, collapse = ', ')))
 
 
 # UPLOAD DATA TO DB

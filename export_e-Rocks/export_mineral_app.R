@@ -9,8 +9,49 @@ rm(list=ls())
 path <- 'export_e-Rocks/'
 
 #Load data ---------------------------------------------------------------------
-e_rocks <- read.csv(paste0(path, 'minerals (10).csv')) 
-  # select(Title, Nid)
+# Load and pre-process e-rocks subset
+e_rocks_initial <- read.csv(paste0(path, 'minerals (10).csv')) %>%
+  select(Title, Nid)
+
+# with parsed formulas
+e_rocks_parsed <- read_csv('e_rocks_parsed.csv')
+
+e_rocks <- read.csv(paste0(path, 'minerals (10).csv')) %>%
+  rename(Mineral_Name=Title, 'Approval history'=`Approval.status`, Groups=`Group.Parent`,`Strunz 8th edition`=Strunz,
+         `Crystal System`=Crystal.System, Localities=`Type.Locality`) %>%
+mutate(Hardness.Min = as.character(Hardness.Min),
+       Hardness.Max = as.character(Hardness.Max)) %>%
+mutate(Hardness = case_when(
+    Hardness.Max < Hardness.Min ~ paste0(Hardness.Max, '-', Hardness.Min),
+    Hardness.Min != Hardness.Max ~ paste0(Hardness.Min, '-', Hardness.Max),
+    Hardness.Min == Hardness.Max ~ paste0(Hardness.Min)
+  ),
+  Varieties = NA,
+  "Dana 8th edition"=NA,
+  "Strunz 10th edition" = NA,
+  "Hey's 3rd edition" = NA,
+  "Class Name" = NA,
+  Cleavage = NA,
+  Context = NA,
+  "Density calculated" = NA,
+  "Density measured" = NA,     
+  "Distribution" = NA,          
+  "Distribution Range" = NA,
+  Fracture = NA,
+  "Geological occurrence" = NA,
+  "Groups Short" = NA,
+  "H-M symbol"=NA,
+  "Habit"=NA,
+  "Lustre" = NA,
+  "Named for"=NA,
+  "Non-standart settings"=NA,
+  "Optical Properties"=NA,
+  "References"=NA,
+  "Space group"=NA,
+  "Tenacity"=NA,
+  "Type Locality"=NA,
+  "URL to e-Rocks"=ifelse(!is.na(Nid),paste0('https://e-rocks.com/node/',Nid), NA)
+) 
 
 status <- googlesheets4::read_sheet(
   ss='1QA-Y229WNurpJA7KYmpiU2jn-_YJmrUfLq_lv0VFpXg',
@@ -87,11 +128,15 @@ mindex <- googlesheets4::read_sheet(
   
 # Cross-check e-rocks data with ours -------------------------------------
 
-missing <- e_rocks %>%
-  anti_join(status, by=c("Title"="Mineral_Name")) %>%
+missing_e_rocks <- e_rocks %>%
+  anti_join(status, by='Mineral_Name') %>%
   filter(Class == 'Mineral') %>%
-  filter(str_detect(Title, 'Alice'))
-
+  select("Mineral_Name","Approval history","Groups","Synonyms","Varieties","Strunz 8th edition","Dana 8th edition",     
+        "Strunz 10th edition","Hey's 3rd edition","Formula","Crystal System","Class Name","H-M symbol","Space group",          
+         "Non-standart settings" ,"Optical Properties","Colour","Streak","Lustre","Cleavage","Fracture",             
+         "Tenacity","Hardness","Density measured","Density calculated","Habit","Geological occurrence" ,"Localities" ,          
+         "References","Named for","Type Locality","Distribution","Distribution Range","URL to e-Rocks", "Context",              
+          "Groups Short")
 
 # pre-parse groups ----
 groups_parsed <- groups %>%
@@ -119,11 +164,12 @@ mindex_out <- status %>%
   rename(`Non-standart settings` = Note) %>%
   left_join(physical, by='Mineral_Name') %>%
   select(!c(Index, all_indexes, VarKey)) %>%
-  mutate(Hardness = case_when(
-    H_min != H_max ~ paste0(H_min, '-', H_max),
-    H_min == H_max ~ paste0(H_min)
-  ),
-        `Density measured` = case_when(
+  mutate(
+          Hardness = case_when(
+          H_min != H_max ~ paste0(H_min, '-', H_max),
+          H_min == H_max ~ paste0(H_min)
+        ),
+          `Density measured` = case_when(
           `D(meas,)_min` != `D(meas,)_max` ~ paste0(`D(meas,)_min`, '-', `D(meas,)_max`),
           `D(meas,)_min` == `D(meas,)_max` ~ paste0(`D(meas,)_min`)
         )) %>%
@@ -146,16 +192,14 @@ mindex_out <- status %>%
     other != '' ~ paste0(other, ifelse(note == '', '', paste0(' - ', note)))
   )) %>%
   left_join(ns, by='Mineral_Name') %>%
-  mutate(Formula = ifelse(!is.na(Formula), str_replace_all(Formula, '\\_(.*?)\\_',"<sub>\\1</sub>"), NA)) %>%
-  mutate(Formula = ifelse(!is.na(Formula), str_replace_all(Formula, '\\^(.*?)\\^',"<sup>\\1</sup>"), NA)) %>%
   select(Mineral_Name, `Approval history`, Groups, Strunz, Formula, `Crystal System`, `Class Name`,
          `H-M symbol`, `Space group`, `Non-standart settings`, Diaphaneity, color, Streak, Luster, Cleavage, Fracture,
          Tenacity, Hardness, `Density measured`, `D(calc,)`, `Habit(main)`, `Named for`, Index_Legend_Label, Index_Legend_Range,
          `Groups Short`, `Type Locality`) %>%
   left_join(mindex, by = c('Mineral_Name' = 'Mineral Name')) %>%
-  left_join(e_rocks, by=c('Mineral_Name'='Title')) %>%
+  left_join(e_rocks_initial, by=c('Mineral_Name'='Title')) %>%
   mutate(url_title=tolower(str_replace_all(Mineral_Name, '[()]', ''))) %>%
-  mutate(`URL to e-Rocks1` = ifelse(!is.na(Nid),paste0('https://e-rocks.com/node/',Nid), NA)) %>%
+  mutate(`URL to e-Rocks1` = ifelse(!is.na(Nid),paste0('https://e-rocks.com/minerals/',Nid,'/',url_title), NA)) %>%
   mutate(`URL to e-Rocks` = ifelse(is.na(`URL to e-Rocks`),`URL to e-Rocks1`, `URL to e-Rocks`)) %>%
   mutate(`URL to e-Rocks` = ifelse(Mineral_Name == "O'Danielite",'https://e-rocks.com/minerals/5148/odanielite', `URL to e-Rocks`)) %>%
   select(Mineral_Name, `Approval history`, Groups, Synonyms, Varieties, `Strunz 8th edition`, `Dana 8th edition`, Strunz,
@@ -165,6 +209,16 @@ mindex_out <- status %>%
          `Named for`,`Type Locality`, Index_Legend_Label, Index_Legend_Range, `URL to e-Rocks`, `Context`, `Groups Short`) %>%
   rename(`Strunz 10th edition`=Strunz,`Optical Properties` = Diaphaneity, Colour=color, Lustre=Luster, `Density calculated` = `D(calc,)`,
          Habit = `Habit(main)`, Distribution=Index_Legend_Label, `Distribution Range`=Index_Legend_Range)
+
+# add missing data from e-rocks
+
+mindex_out <- mindex_out %>%
+  distinct(Mineral_Name,.keep_all=TRUE) %>%
+  mutate(Formula = ifelse(!is.na(Formula), str_replace_all(Formula, '\\_(.*?)\\_',"<sub>\\1</sub>"), NA)) %>%
+  mutate(Formula = ifelse(!is.na(Formula), str_replace_all(Formula, '\\^(.*?)\\^',"<sup>\\1</sup>"), NA))
+
+# colnames(mindex_out)
+# sort(colnames(missing_e_rocks))
 
 mindex_out <- mindex_out %>%
   mutate(Hardness = str_replace_all(Hardness, ',', '.'),
@@ -176,6 +230,7 @@ mindex_out[mindex_out==""]<-NA
 write.csv(mindex_out, 'Mindex_16112020.csv', na='', quote = F, row.names = F)
 write_csv(mindex_out, 'Mindex_24112020.csv', na='', quote_escape = "double")
 write_csv(mindex_out, 'Mindex_17022021.csv', na='', quote_escape = "double")
-write_csv(missing, 'missing.csv', na='', quote_escape = "double")
+write_csv(mindex_out, 'Mindex_04032021.csv', na='', quote_escape = "double")
+write_csv(missing_e_rocks, 'missing_e_rocks.csv', na='', quote_escape = "double")
 
 

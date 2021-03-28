@@ -1,13 +1,13 @@
 {
     "sortOrder": [
         {
-            "columnIndex": 2,
-            "ascending": true
-        },
-        {
             "columnIndex": 4,
             "ascending": false
+        },
+        {
+            "columnIndex": 2,
+            "ascending": true
         }
     ],
-    "path": "~/Dropbox/GP-minerals/R scripts/export_to_SQL"
+    "path": "~/Dropbox/GP-minerals/R scripts/export_to_SQL/export_io"
 }
